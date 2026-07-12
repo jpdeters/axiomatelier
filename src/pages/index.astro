@@ -1,17 +1,80 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Axiom Atelier">
+  <section class="hero">
+    <p class="eyebrow">A Philosophy of Making</p>
+    <h1>Axiom Atelier</h1>
+    <p class="tagline">Furniture and objects shaped by what remains.</p>
+    <p class="intro">
+      Each piece begins as more material than it needs to be. What stays is what matters.
+    </p>
+    <div class="cta">
+      <a href="/collections" class="button primary">View the Collection</a>
+      <a href="/manifesto" class="button secondary">Read the Manifesto</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 100px 0;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    color: #7a7a7a;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 4rem;
+    margin: 0 0 30px 0;
+    line-height: 1.1;
+  }
+
+  .tagline {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #444;
+    margin-bottom: 20px;
+  }
+
+  .intro {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-bottom: 50px;
+  }
+
+  .cta {
+    display: flex;
+    gap: 20px;
+  }
+
+  .button {
+    padding: 14px 28px;
+    border: 1px solid #161616;
+    font-size: 0.95rem;
+  }
+
+  .button.primary {
+    background: #161616;
+    color: #faf9f6;
+  }
+
+  .button.secondary {
+    background: transparent;
+  }
+
+  @media (max-width: 700px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    .cta {
+      flex-direction: column;
+    }
+  }
+</style>

@@ -1,0 +1,129 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Collections — Axiom Atelier">
+  <section class="collections-intro">
+    <h1>Collections</h1>
+    <p>
+      Axiom Atelier's work is organized into three collections, each governed by the same
+      principle of disciplined subtraction — applied differently depending on scale, material,
+      and intent.
+    </p>
+  </section>
+
+  <section class="collection">
+    <h2>Foundations</h2>
+    <p class="collection-tagline">Repeatable pieces for daily use.</p>
+    <p>
+      The Foundations collection includes furniture and object pieces designed to be lived
+      with — quiet, functional forms built from quarter-sawn white oak and Peruvian walnut.
+      Each piece is made to order, one at a time, by hand.
+    </p>
+
+    <div class="piece">
+      <h3>5-Votive Tray</h3>
+      <p class="price">$89.99</p>
+      <p>
+        A single tray in quarter-sawn white oak and Peruvian walnut, sized to hold five
+        votives. Simple, precise, and built to outlast trend.
+      </p>
+    </div>
+
+    <div class="piece">
+      <h3>Still Horizon Side Table</h3>
+      <p class="price">$1,150</p>
+      <p>
+        An oak side table built around a single horizontal plane — proportioned to feel
+        weightless despite its solidity.
+      </p>
+    </div>
+  </section>
+
+  <section class="collection">
+    <h2>Witness</h2>
+    <p class="collection-tagline">Earth pigment paintings.</p>
+    <p>
+      A parallel body of work exploring the same principle of subtraction through paint
+      rather than wood — earth pigments applied and removed until what remains feels
+      discovered rather than composed.
+    </p>
+    <p class="coming-soon">Coming soon.</p>
+  </section>
+
+  <section class="collection">
+    <h2>Bespoke</h2>
+    <p class="collection-tagline">Commissioned furniture, made to fit.</p>
+    <p>
+      For those who want a piece built specifically for their space, Axiom Atelier accepts a
+      limited number of bespoke commissions each season. Commissions begin at $1,200 and are
+      scoped individually based on material, scale, and complexity.
+    </p>
+    <a href="/contact" class="button primary">Inquire About a Commission</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .collections-intro {
+    padding: 80px 0 40px 0;
+    max-width: 700px;
+  }
+
+  .collections-intro h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .collection {
+    padding: 60px 0;
+    border-top: 1px solid #ddd;
+    max-width: 700px;
+  }
+
+  .collection h2 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
+
+  .collection-tagline {
+    font-style: italic;
+    color: #7a7a7a;
+    margin-bottom: 25px;
+  }
+
+  .collection p {
+    line-height: 1.6;
+    color: #2a2a2a;
+  }
+
+  .piece {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px dashed #ccc;
+  }
+
+  .piece h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+  }
+
+  .price {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .coming-soon {
+    font-style: italic;
+    color: #a0a0a0;
+  }
+
+  .button.primary {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    border: 1px solid #161616;
+    background: #161616;
+    color: #faf9f6;
+    text-decoration: none;
+  }
+</style>

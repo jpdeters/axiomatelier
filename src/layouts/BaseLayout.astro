@@ -1,0 +1,87 @@
+---
+const { title = "Axiom Atelier" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <a href="/" class="logo">Axiom Atelier</a>
+        <div class="links">
+          <a href="/manifesto">Manifesto</a>
+          <a href="/collections">Collections</a>
+          <a href="/process">Process</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <p>&copy; {new Date().getFullYear()} Axiom Atelier</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  body {
+    margin: 0;
+    background: #faf9f6;
+    color: #161616;
+    font-family: Georgia, serif;
+  }
+
+  header, footer {
+    padding: 30px 40px;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    letter-spacing: 0.02em;
+  }
+
+  .links {
+    display: flex;
+    gap: 30px;
+    font-size: 0.95rem;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+
+  @media (max-width: 700px) {
+    nav {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+</style>

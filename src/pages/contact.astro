@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contact — Axiom Atelier">
+  <section class="contact">
+    <h1>Get in Touch</h1>
+
+    <p>
+      Interested in a piece, a commission, or just want to see more of the process?
+    </p>
+
+    <form class="contact-form">
+      <label>
+        Name
+        <input type="text" name="name" required />
+      </label>
+
+      <label>
+        Email
+        <input type="email" name="email" required />
+      </label>
+
+      <label>
+        Message
+        <textarea name="message" rows="6" required></textarea>
+      </label>
+
+      <button type="submit" class="button primary">Send</button>
+    </form>
+
+    <p class="etsy-note">
+      Or find current available pieces on <a href="https://www.etsy.com" target="_blank">Etsy</a>.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    padding: 80px 0;
+    max-width: 600px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #2a2a2a;
+    margin-bottom: 30px;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  input, textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+  }
+
+  .button.primary {
+    align-self: flex-start;
+    padding: 14px 28px;
+    border: 1px solid #161616;
+    background: #161616;
+    color: #faf9f6;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+
+  .etsy-note {
+    margin-top: 40px;
+    font-size: 0.95rem;
+  }
+</style>
