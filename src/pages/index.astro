@@ -4,6 +4,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="Axiom Atelier">
   <section class="hero">
+    <img src="/images/logo-mark.png" alt="" class="hero-watermark" />
+
     <p class="eyebrow">A Philosophy of Making</p>
     <h1>Axiom Atelier</h1>
     <p class="tagline">Furniture and objects shaped by what remains.</p>
@@ -20,6 +22,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <style>
   .hero {
     padding: 100px 0;
+    position: relative;
+  }
+
+  .hero-watermark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 180px;
+    height: auto;
+    opacity: 0.4;
+    pointer-events: none;
+    user-select: none;
   }
 
   .eyebrow {
@@ -75,6 +89,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
     .cta {
       flex-direction: column;
+    }
+    .hero-watermark {
+      width: 100px;
     }
   }
 </style>

@@ -22,7 +22,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </p>
 
     <div class="piece">
-      <h3>5-Votive Tray</h3>
+      <div class="piece-image">
+        <img
+          src="/images/pieces/tranquil-ember-5.jpg"
+          alt="Tranquil Ember — 5 Light"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="placeholder-fallback">Photo pending</div>
+      </div>
+      <h3>Tranquil Ember — 5 Light</h3>
       <p class="price">$89.99</p>
       <p>
         A single tray in quarter-sawn white oak and Peruvian walnut, sized to hold five
@@ -31,6 +39,48 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <div class="piece">
+      <div class="piece-image">
+        <img
+          src="/images/pieces/tranquil-ember-4.jpg"
+          alt="Tranquil Ember — 4 Light"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="placeholder-fallback">Photo pending</div>
+      </div>
+      <h3>Tranquil Ember — 4 Light</h3>
+      <p class="price">$79</p>
+      <p>
+        A companion piece to the 5-Light tray, in the same materials and construction —
+        sized for a smaller table or a quieter arrangement.
+      </p>
+    </div>
+
+    <div class="piece">
+      <div class="piece-image">
+        <img
+          src="/images/pieces/gathered-light.jpg"
+          alt="Gathered Light"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="placeholder-fallback">Photo pending</div>
+      </div>
+      <h3>Gathered Light</h3>
+      <p class="price">$79</p>
+      <p>
+        A three-votive tray built from workshop offcuts, with a striped, multi-band
+        construction in quarter-sawn white oak and Peruvian walnut. No two are quite alike.
+      </p>
+    </div>
+
+    <div class="piece">
+      <div class="piece-image">
+        <img
+          src="/images/pieces/still-horizon.jpg"
+          alt="Still Horizon Side Table"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="placeholder-fallback">Photo pending</div>
+      </div>
       <h3>Still Horizon Side Table</h3>
       <p class="price">$1,150</p>
       <p>
@@ -48,7 +98,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       rather than wood — earth pigments applied and removed until what remains feels
       discovered rather than composed.
     </p>
-    <p class="coming-soon">Coming soon.</p>
+
+    <div class="piece">
+      <div class="piece-image">
+        <img
+          src="/images/pieces/sovereign-horizon.jpg"
+          alt="Sovereign Horizon"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="placeholder-fallback">Photo pending</div>
+      </div>
+      <h3>Sovereign Horizon</h3>
+      <p class="price">$650</p>
+      <p>
+        Mineral pigments and stabilized earth materials, framed in American Ash. The
+        reverse carries a signature, completion year, and the coordinates of where the
+        earth materials were foraged.
+      </p>
+    </div>
   </section>
 
   <section class="collection">
@@ -61,6 +128,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </p>
     <a href="/contact" class="button primary">Inquire About a Commission</a>
   </section>
+
+  <!-- Lightbox overlay, shared across all pieces -->
+  <div id="lightbox" class="lightbox">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div id="lightbox-fallback" class="lightbox-fallback">Photo pending</div>
+  </div>
 </BaseLayout>
 
 <style>
@@ -126,4 +200,132 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     color: #faf9f6;
     text-decoration: none;
   }
+
+  /* Thumbnail with hover zoom + click-to-expand */
+  .piece-image {
+    width: 220px;
+    height: 220px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    background: #f0efe9;
+    cursor: pointer;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .piece-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .piece-image:hover img {
+    transform: scale(1.08);
+  }
+
+  .placeholder-fallback {
+    display: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #a0a0a0;
+    font-style: italic;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: transform 0.35s ease;
+  }
+
+  .piece-image:hover .placeholder-fallback {
+    transform: scale(1.05);
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 20, 20, 0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .lightbox.active {
+    display: flex;
+  }
+
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    display: block;
+  }
+
+  .lightbox-fallback {
+    display: none;
+    color: #faf9f6;
+    font-style: italic;
+    font-size: 1.2rem;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: none;
+    border: none;
+    color: #faf9f6;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  @media (max-width: 700px) {
+    .piece-image {
+      width: 160px;
+      height: 160px;
+    }
+  }
 </style>
+
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement;
+  const lightboxFallback = document.getElementById("lightbox-fallback");
+  const closeBtn = document.getElementById("lightbox-close");
+
+  document.querySelectorAll(".piece-image").forEach((el) => {
+    el.addEventListener("click", () => {
+      const img = el.querySelector("img") as HTMLImageElement;
+      const isVisible = img.style.display !== "none";
+
+      if (isVisible) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxImg.style.display = "block";
+        lightboxFallback!.style.display = "none";
+      } else {
+        lightboxImg.style.display = "none";
+        lightboxFallback!.style.display = "block";
+      }
+
+      lightbox!.classList.add("active");
+    });
+  });
+
+  function closeLightbox() {
+    lightbox!.classList.remove("active");
+  }
+
+  closeBtn!.addEventListener("click", closeLightbox);
+  lightbox!.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+  });
+</script>
