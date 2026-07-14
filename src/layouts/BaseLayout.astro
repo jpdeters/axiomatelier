@@ -1,14 +1,62 @@
 ---
-const { title = "Axiom Atelier" } = Astro.props;
+// 1. Get the current page URL and props
+const { title = "Axiom Atelier", image = "/images/default-share-image.jpg" } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// 2. Dynamic Fallback Logic for Descriptions
+let description = Astro.props.description;
+
+if (!description) {
+  const path = Astro.url.pathname.replace(/\/$/, ""); // Cleans up trailing slashes
+  
+  if (path === "" || path === "/") {
+    description = "Handcrafted minimalist hardwood furniture and fine geological relief art.";
+  } else if (path.includes("manifesto")) {
+    description = `Explore the design philosophy and creative principles behind the minimalist collections at ${title}.`;
+  } else if (path.includes("collections")) {
+    description = `Browse the latest collection of premium hardwood furniture and textured fine art at ${title}.`;
+  } else if (path.includes("process")) {
+    description = `A look behind the scenes: How we forage, refine, and handcraft our premium artwork and furniture designs.`;
+  } else if (path.includes("contact")) {
+    description = `Get in touch with us at ${title} for custom woodworking commissions, inquiries, and design collaborations.`;
+  } else if (path.includes("essays")) {
+    // Dynamically names your essays based on their title
+    description = `Read our design essay "${title}"—exploring art, geometry, and woodworking materials.`;
+  } else {
+    // A safe, catch-all fallback using the page's current title
+    description = `Discover ${title} — custom luxury woodworking and fine geological relief art designs.`;
+  }
+}
 ---
 
 <html lang="en">
   <head>
+    <!-- Essential Global Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
-    <!-- Link to the auto-generated sitemap -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook / LinkedIn (Controls social media previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <!-- Twitter Preview Tags -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
   </head>
 
   <body>
@@ -34,56 +82,7 @@ const { title = "Axiom Atelier" } = Astro.props;
   </body>
 </html>
 
+<!-- Keep your existing <style> tag down here exactly as it was -->
 <style>
-  body {
-    margin: 0;
-    background: #faf9f6;
-    color: #161616;
-    font-family: Georgia, serif;
-  }
-
-  header, footer {
-    padding: 30px 40px;
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .logo {
-    font-size: 1.2rem;
-    letter-spacing: 0.02em;
-  }
-
-  .links {
-    display: flex;
-    gap: 30px;
-    font-size: 0.95rem;
-  }
-
-  main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-
-  footer {
-    text-align: center;
-    font-size: 0.85rem;
-    opacity: 0.6;
-  }
-
-  @media (max-width: 700px) {
-    nav {
-      flex-direction: column;
-      gap: 20px;
-    }
-  }
+  /* ... your styles ... */
 </style>
