@@ -1,32 +1,13 @@
 ---
-import "../styles/global.css";
+// 1. Expand your props to accept title, description, and an optional image
+const { 
+  title = "Axiom Atelier", 
+  description = "Handcrafted minimalist hardwood furniture and fine geological relief art.",
+  image = "/images/default-share-image.jpg" // A default image for social shares
+} = Astro.props;
 
-// 1. Get the current page URL and props
-const { title = "Axiom Atelier", image = "/images/default-share-image.jpg" } = Astro.props;
+// 2. Get the current page URL dynamically for the Open Graph tags
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-// 2. Dynamic Fallback Logic tailored for Axiom Atelier
-let description = Astro.props.description;
-
-if (!description) {
-  const path = Astro.url.pathname.replace(/\/$/, ""); // Cleans up trailing slashes
-  
-  if (path === "" || path === "/") {
-    description = "Handcrafted minimalist hardwood furniture and fine geological relief art.";
-  } else if (path.includes("manifesto")) {
-    description = `Explore the design philosophy and creative principles behind the minimalist collections at ${title}.`;
-  } else if (path.includes("collections")) {
-    description = `Browse the latest collection of premium hardwood furniture and textured fine art at ${title}.`;
-  } else if (path.includes("process")) {
-    description = `A look behind the scenes: How we forage, refine, and handcraft our premium artwork and furniture designs.`;
-  } else if (path.includes("contact")) {
-    description = `Get in touch with us at ${title} for custom woodworking commissions, inquiries, and design collaborations.`;
-  } else if (path.includes("essays")) {
-    description = `Read our design essay "${title}"—exploring art, geometry, and woodworking materials.`;
-  } else {
-    description = `Discover ${title}—custom luxury woodworking and fine geological relief art designs.`;
-  }
-}
 ---
 
 <html lang="en">
@@ -44,7 +25,7 @@ if (!description) {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph / Facebook / LinkedIn -->
+    <!-- Open Graph / Facebook / LinkedIn (Controls social media previews) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
@@ -60,23 +41,29 @@ if (!description) {
   </head>
 
   <body>
+    <header>
+      <nav>
+        <a href="/" class="logo">Axiom Atelier</a>
+        <div class="links">
+          <a href="/manifesto">Manifesto</a>
+          <a href="/collections">Collections</a>
+          <a href="/process">Process</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
     <main>
       <slot />
     </main>
+
+    <footer>
+      <p>&copy; {new Date().getFullYear()} Axiom Atelier</p>
+    </footer>
   </body>
 </html>
 
+<!-- Keep your existing <style> tag down here exactly as it was -->
 <style>
-  body {
-    margin: 0;
-    background: #faf9f6;
-    color: #161616;
-    font-family: Georgia, serif;
-  }
-
-  main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
+  /* ... your styles ... */
 </style>
