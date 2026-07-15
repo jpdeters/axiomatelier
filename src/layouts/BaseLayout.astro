@@ -1,15 +1,40 @@
 ---
-const { title = "Axiom Atelier" } = Astro.props;
+const {
+  title = "Axiom Atelier",
+  description = "Handcrafted minimalist hardwood furniture and fine geological relief art.",
+  image = "/images/default-share-image.jpg"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
-    <!-- Link to the auto-generated sitemap -->
-    <link rel="sitemap" href="/sitemap-index.xml" />
-  </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>{title}</title>
+
+  <meta name="description" content={description} />
+
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Sitemap -->
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(image, Astro.site)} />
+
+  <!-- Twitter / Social Sharing -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(image, Astro.site)} />
+</head>
 
   <body>
     <header>
