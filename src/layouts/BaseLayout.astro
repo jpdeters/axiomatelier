@@ -3,7 +3,7 @@
 const { 
   title = "Axiom Atelier", 
   description = "Handcrafted minimalist hardwood furniture and fine geological relief art.",
-  image = "/images/default-share-image.jpg" // A default image for social shares
+  image = "/images/default-share-image.jpg" 
 } = Astro.props;
 
 // 2. Get the current page URL dynamically for the Open Graph tags
@@ -25,7 +25,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph / Facebook / LinkedIn (Controls social media previews) -->
+    <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
@@ -41,8 +41,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </head>
 
   <body>
-    <header>
-      <nav>
+    <header class="site-header">
+      <nav class="nav-container">
         <a href="/" class="logo">Axiom Atelier</a>
         <div class="links">
           <a href="/manifesto">Manifesto</a>
@@ -57,13 +57,84 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
 
-    <footer>
+    <footer class="site-footer">
       <p>&copy; {new Date().getFullYear()} Axiom Atelier</p>
     </footer>
   </body>
 </html>
 
-<!-- Keep your existing <style> tag down here exactly as it was -->
-<style>
-  /* ... your styles ... */
+<style is:global>
+  body {
+    margin: 0;
+    background: #faf9f6;
+    color: #161616;
+    font-family: Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* Header Navigation Styling */
+  .site-header {
+    width: 100%;
+    background: #faf9f6;
+  }
+
+  .nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: Georgia, serif;
+    font-size: 1.25rem;
+    color: #161616;
+    text-decoration: none;
+    font-weight: normal;
+  }
+
+  .links {
+    display: flex;
+    gap: 30px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .links a {
+    color: #161616;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .links a:hover {
+    opacity: 0.6;
+  }
+
+  /* Footer Styling */
+  .site-footer {
+    max-width: 1100px;
+    margin: 80px auto 40px;
+    padding: 0 40px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .nav-container {
+      flex-direction: column;
+      gap: 20px;
+      padding: 30px 20px;
+    }
+  }
 </style>
