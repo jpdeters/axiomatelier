@@ -1,13 +1,32 @@
 ---
-// 1. Expand your props to accept title, description, and an optional image
-const { 
-  title = "Axiom Atelier", 
-  description = "Handcrafted minimalist hardwood furniture and fine geological relief art.",
-  image = "/images/default-share-image.jpg" 
-} = Astro.props;
+import "../styles/global.css";
 
-// 2. Get the current page URL dynamically for the Open Graph tags
+// 1. Get the current page URL and props
+const { title = "Axiom Atelier", image = "/images/default-share-image.jpg" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// 2. Dynamic Fallback Logic tailored for Axiom Atelier
+let description = Astro.props.description;
+
+if (!description) {
+  const path = Astro.url.pathname.replace(/\/$/, ""); // Cleans up trailing slashes
+  
+  if (path === "" || path === "/") {
+    description = "Handcrafted minimalist hardwood furniture and fine geological relief art.";
+  } else if (path.includes("manifesto")) {
+    description = `Explore the design philosophy and creative principles behind the minimalist collections at ${title}.`;
+  } else if (path.includes("collections")) {
+    description = `Browse the latest collection of premium hardwood furniture and textured fine art at ${title}.`;
+  } else if (path.includes("process")) {
+    description = `A look behind the scenes: How we forage, refine, and handcraft our premium artwork and furniture designs.`;
+  } else if (path.includes("contact")) {
+    description = `Get in touch with us at ${title} for custom woodworking commissions, inquiries, and design collaborations.`;
+  } else if (path.includes("essays")) {
+    description = `Read our design essay "${title}"—exploring art, geometry, and woodworking materials.`;
+  } else {
+    description = `Discover ${title}—custom luxury woodworking and fine geological relief art designs.`;
+  }
+}
 ---
 
 <html lang="en">
@@ -41,100 +60,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </head>
 
   <body>
-    <header class="site-header">
-      <nav class="nav-container">
-        <a href="/" class="logo">Axiom Atelier</a>
-        <div class="links">
-          <a href="/manifesto">Manifesto</a>
-          <a href="/collections">Collections</a>
-          <a href="/process">Process</a>
-          <a href="/contact">Contact</a>
-        </div>
-      </nav>
-    </header>
-
     <main>
       <slot />
     </main>
-
-    <footer class="site-footer">
-      <p>&copy; {new Date().getFullYear()} Axiom Atelier</p>
-    </footer>
   </body>
 </html>
 
-<style is:global>
+<style>
   body {
     margin: 0;
     background: #faf9f6;
     color: #161616;
     font-family: Georgia, serif;
-    -webkit-font-smoothing: antialiased;
   }
 
   main {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 40px;
-  }
-
-  /* Header Navigation Styling */
-  .site-header {
-    width: 100%;
-    background: #faf9f6;
-  }
-
-  .nav-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 40px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    font-family: Georgia, serif;
-    font-size: 1.25rem;
-    color: #161616;
-    text-decoration: none;
-    font-weight: normal;
-  }
-
-  .links {
-    display: flex;
-    gap: 30px;
-    font-family: system-ui, -apple-system, sans-serif;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .links a {
-    color: #161616;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-  }
-
-  .links a:hover {
-    opacity: 0.6;
-  }
-
-  /* Footer Styling */
-  .site-footer {
-    max-width: 1100px;
-    margin: 80px auto 40px;
-    padding: 0 40px;
-    font-family: system-ui, -apple-system, sans-serif;
-    font-size: 0.85rem;
-    color: #666;
-  }
-
-  @media (max-width: 768px) {
-    .nav-container {
-      flex-direction: column;
-      gap: 20px;
-      padding: 30px 20px;
-    }
   }
 </style>
