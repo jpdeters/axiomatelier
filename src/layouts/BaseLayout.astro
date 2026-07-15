@@ -1,31 +1,30 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 // 1. Get the current page URL and props
-const { title = "Latent Form Theory", image = "/images/default-share-image.jpg" } = Astro.props;
+const { title = "Axiom Atelier", image = "/images/default-share-image.jpg" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-// 2. Dynamic Fallback Logic tailored for Latent Form Theory
+// 2. Dynamic Fallback Logic tailored for Axiom Atelier
 let description = Astro.props.description;
 
 if (!description) {
   const path = Astro.url.pathname.replace(/\/$/, ""); // Cleans up trailing slashes
   
   if (path === "" || path === "/") {
-    description = "Exploring the intersection of art, geometry, and design philosophy.";
+    description = "Handcrafted minimalist hardwood furniture and fine geological relief art.";
+  } else if (path.includes("manifesto")) {
+    description = `Explore the design philosophy and creative principles behind the minimalist collections at ${title}.`;
+  } else if (path.includes("collections")) {
+    description = `Browse the latest collection of premium hardwood furniture and textured fine art at ${title}.`;
+  } else if (path.includes("process")) {
+    description = `A look behind the scenes: How we forage, refine, and handcraft our premium artwork and furniture designs.`;
+  } else if (path.includes("contact")) {
+    description = `Get in touch with us at ${title} for custom woodworking commissions, inquiries, and design collaborations.`;
   } else if (path.includes("essays")) {
-    description = `Read our latest design essay "${title}"—exploring art, depth, and creative theory.`;
-  } else if (path.includes("gallery")) {
-    description = `Browse the visual portfolio, geometric forms, and structural artwork collections.`;
-  } else if (path.includes("theory")) {
-    description = `An in-depth look into the core philosophies and frameworks of Latent Form Theory.`;
-  } else if (path.includes("about")) {
-    description = `Learn more about the intent, vision, and origins behind Latent Form Theory.`;
+    description = `Read our design essay "${title}"—exploring art, geometry, and woodworking materials.`;
   } else {
-    // Catch-all safety fallback using the current page title
-    description = `Discover ${title}—essays and perspectives on structural art and modern design theory.`;
+    description = `Discover ${title}—custom luxury woodworking and fine geological relief art designs.`;
   }
 }
 ---
@@ -61,13 +60,9 @@ if (!description) {
   </head>
 
   <body>
-    <Header />
-
     <main>
       <slot />
     </main>
-
-    <Footer />
   </body>
 </html>
 
