@@ -1,0 +1,47 @@
+<header>
+  <nav>
+    <a href="/" class="logo">Latent Form Theory</a>
+
+    <div class="links">
+      <a href="/theory">Theory</a>
+      <a href="/essays">Essays</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/about">About</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    padding: 30px 0;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    letter-spacing: 0.02em;
+  }
+
+  .links {
+    display: flex;
+    gap: 30px;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 700px) {
+    nav {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+</style>
