@@ -59,22 +59,12 @@ if (!description) {
     <meta property="twitter:image" content={new URL(image, Astro.site)} />
   </head>
 
-  <body>
-    <header>
-      <nav>
-        <a href="/" class="logo">Axiom Atelier</a>
-        <div class="links">
-          <a href="/manifesto">Manifesto</a>
-          <a href="/collections">Collections</a>
-          <a href="/process">Process</a>
-          <a href="/contact">Contact</a>
-        </div>
-      </nav>
-    </header>
-
+ <body>
+    <!-- Main content container that uses your existing page-specific layouts and styles -->
     <main>
       <slot />
     </main>
+  </body>
 
     <footer>
       <p>&copy; {new Date().getFullYear()} Axiom Atelier</p>
