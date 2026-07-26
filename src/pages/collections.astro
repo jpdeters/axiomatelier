@@ -24,7 +24,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="piece">
       <div class="piece-image">
         <img
-          src="/images/pieces/tranquil-ember-5.jpeg"
+          src="/images/pieces/tranquil-ember-5.jpg"
           alt="Tranquil Ember — 5 Light"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
@@ -41,7 +41,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="piece">
       <div class="piece-image">
         <img
-          src="/images/pieces/tranquil-ember-4.jpeg"
+          src="/images/pieces/tranquil-ember-4.png"
           alt="Tranquil Ember — 4 Light"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
@@ -58,7 +58,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="piece">
       <div class="piece-image">
         <img
-          src="/images/pieces/gathered-light.jpeg"
+          src="/images/pieces/gathered-light.jpg"
           alt="Gathered Light"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
@@ -251,7 +251,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     z-index: 1000;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 20px;
   }
 
   .lightbox.active {
@@ -259,8 +259,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .lightbox img {
-    max-width: 90vw;
-    max-height: 85vh;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     display: block;
   }
@@ -274,8 +274,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   .lightbox-close {
     position: absolute;
-    top: 30px;
-    right: 40px;
+    top: 20px;
+    right: 20px;
     background: none;
     border: none;
     color: #faf9f6;

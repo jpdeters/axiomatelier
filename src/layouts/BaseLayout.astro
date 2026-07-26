@@ -1,10 +1,22 @@
 ---
-const {
-  title = "Axiom Atelier",
-  description = "Handcrafted minimalist hardwood furniture and fine geological relief art.",
-  image = "/images/default-share-image.jpg"
-} = Astro.props;
+const title = Astro.props.title ?? "Axiom Atelier";
+const image = Astro.props.image ?? "/images/default-share-image.jpg";
 
+const descriptions = {
+  "Axiom Atelier":
+    "Axiom Atelier is a studio making minimalist hardwood furniture and refined geological relief art.",
+  "Contact — Axiom Atelier":
+    "Reach out to Axiom Atelier for inquiries about commissions, current pieces, or process questions.",
+  "Collections — Axiom Atelier":
+    "Explore Axiom Atelier's curated collections of handcrafted furniture, object pieces, and earth pigment paintings.",
+  "Process — Axiom Atelier":
+    "Learn how Axiom Atelier crafts each piece through disciplined subtraction, material study, and handwork.",
+  "Manifesto — Axiom Atelier":
+    "Read the Axiom Atelier manifesto on essential subtraction, material truth, and making with quiet intention."
+};
+
+const description = Astro.props.description ?? descriptions[title] ??
+  "Handcrafted minimalist hardwood furniture and fine geological relief art.";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 

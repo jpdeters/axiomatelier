@@ -1,0 +1,82 @@
+---
+import "../styles/global.css";
+
+// 1. Get the current page URL and props
+const { title = "Axiom Atelier", image = "/images/default-share-image.jpg" } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// 2. Dynamic Fallback Logic tailored for Axiom Atelier
+let description = Astro.props.description;
+
+if (!description) {
+  const path = Astro.url.pathname.replace(/\/$/, ""); // Cleans up trailing slashes
+  
+  if (path === "" || path === "/") {
+    description = "Handcrafted minimalist hardwood furniture and fine geological relief art.";
+  } else if (path.includes("manifesto")) {
+    description = `Explore the design philosophy and creative principles behind the minimalist collections at ${title}.`;
+  } else if (path.includes("collections")) {
+    description = `Browse the latest collection of premium hardwood furniture and textured fine art at ${title}.`;
+  } else if (path.includes("process")) {
+    description = `A look behind the scenes: How we forage, refine, and handcraft our premium artwork and furniture designs.`;
+  } else if (path.includes("contact")) {
+    description = `Get in touch with us at ${title} for custom woodworking commissions, inquiries, and design collaborations.`;
+  } else if (path.includes("essays")) {
+    description = `Read our design essay "${title}"—exploring art, geometry, and woodworking materials.`;
+  } else {
+    description = `Discover ${title}—custom luxury woodworking and fine geological relief art designs.`;
+  }
+}
+---
+
+<html lang="en">
+  <head>
+    <!-- Essential Global Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <!-- Twitter Preview Tags -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+  </head>
+
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  body {
+    margin: 0;
+    background: #faf9f6;
+    color: #161616;
+    font-family: Georgia, serif;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+</style>
