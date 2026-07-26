@@ -10,7 +10,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       Interested in a piece, a commission, or just want to see more of the process?
     </p>
 
-    <form class="contact-form" action="mailto:hello@axiomatelier.online?subject=Axiom Atelier Inquiry" method="get" enctype="text/plain">
+    <form class="contact-form" action="https://formspree.io/f/mkodpean" method="POST">
+      <input type="hidden" name="_subject" value="Axiom Atelier inquiry" />
+
       <label>
         Name
         <input type="text" name="name" required />
