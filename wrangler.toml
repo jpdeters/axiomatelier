@@ -1,4 +1,4 @@
-name = "axiomatelier-www-redirect"
+name = "axiomatelier"
 compatibility_date = "2026-07-25"
 type = "javascript"
 main = "redirect-worker.js"
