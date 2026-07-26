@@ -1,0 +1,10 @@
+name = "axiomatelier-www-redirect"
+compatibility_date = "2026-07-25"
+type = "javascript"
+main = "redirect-worker.js"
+
+[build]
+command = "npm install"
+
+[vars]
+# Add environment variables here if needed
