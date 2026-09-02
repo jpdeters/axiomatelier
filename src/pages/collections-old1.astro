@@ -187,20 +187,11 @@ const objects = [
   .artwork { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr); gap: clamp(2.5rem, 6vw, 7rem); align-items: end; }
   .artwork:nth-child(even) { grid-template-columns: minmax(280px, .6fr) minmax(0, 1.4fr); }
   .artwork:nth-child(even) .artwork-image { order: 2; }
-  .artwork-image, .object-image { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; overflow: hidden; }
-  .artwork-image img {
-    display: block;
-    width: 100%;
-    max-height: 78vh;
-    object-fit: contain;
-    object-position: left bottom;
-    transform-origin: var(--zoom-x, 50%) var(--zoom-y, 50%);
-    transition: transform .45s cubic-bezier(.2, .7, .2, 1);
-  }
-  .artwork:nth-child(odd) .artwork-image img { object-position: right bottom; }
-  @media (hover: hover) and (pointer: fine) {
-    .artwork-image:hover img { transform: scale(1.65); }
-  }
+  .artwork:nth-child(odd) .artwork-image img {
+  object-position: right bottom;
+}
+  .artwork-image, .object-image { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+  .artwork-image img { display: block; width: 100%; max-height: 78vh; object-fit: contain; object-position: left bottom; }
   .artwork-copy { padding-bottom: 1rem; }
   .work-details { color: #5f5a51; font-size: .9rem; line-height: 1.6; }
   .text-link { display: inline-block; margin-top: 1rem; padding-bottom: .2rem; border-bottom: 1px solid currentColor; color: inherit; text-decoration: none; }
@@ -219,16 +210,7 @@ const objects = [
   .button.primary { display: inline-block; margin-top: 2rem; padding: 1rem 1.8rem; border: 1px solid #171715; background: #171715; color: #f7f4ec; text-decoration: none; }
   .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; padding: 4rem; background: rgba(15, 15, 14, .96); align-items: center; justify-content: center; }
   .lightbox.active { display: flex; }
-  .lightbox img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    cursor: zoom-in;
-    transform-origin: var(--lightbox-x, 50%) var(--lightbox-y, 50%);
-    transition: transform .35s cubic-bezier(.2, .7, .2, 1);
-    user-select: none;
-  }
-  .lightbox img.zoomed { transform: scale(2.5); cursor: zoom-out; }
+  .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; }
   .lightbox-close { position: absolute; top: 1rem; right: 1.4rem; border: 0; background: transparent; color: white; font-size: 2.5rem; cursor: pointer; }
   @media (max-width: 760px) {
     .collections-hero, .collection { padding-left: 1.25rem; padding-right: 1.25rem; }
@@ -247,25 +229,10 @@ const objects = [
   let lastTrigger: HTMLElement | null = null;
 
   document.querySelectorAll<HTMLElement>("[data-lightbox-src]").forEach((trigger) => {
-    trigger.addEventListener("pointermove", (event) => {
-      if (event.pointerType !== "mouse") return;
-      const bounds = trigger.getBoundingClientRect();
-      const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-      const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-      trigger.style.setProperty("--zoom-x", `${x}%`);
-      trigger.style.setProperty("--zoom-y", `${y}%`);
-    });
-
-    trigger.addEventListener("pointerleave", () => {
-      trigger.style.removeProperty("--zoom-x");
-      trigger.style.removeProperty("--zoom-y");
-    });
-
     trigger.addEventListener("click", () => {
       lastTrigger = trigger;
       lightboxImg.src = trigger.dataset.lightboxSrc ?? "";
       lightboxImg.alt = trigger.dataset.lightboxAlt ?? "Expanded artwork";
-      lightboxImg.classList.remove("zoomed");
       lightbox?.classList.add("active");
       lightbox?.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
@@ -274,7 +241,6 @@ const objects = [
   });
 
   function closeLightbox() {
-    lightboxImg.classList.remove("zoomed");
     lightbox?.classList.remove("active");
     lightbox?.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
@@ -282,18 +248,6 @@ const objects = [
   }
 
   closeBtn?.addEventListener("click", closeLightbox);
-  lightboxImg.addEventListener("click", (event) => {
-    event.stopPropagation();
-    lightboxImg.classList.toggle("zoomed");
-  });
-  lightboxImg.addEventListener("pointermove", (event) => {
-    if (!lightboxImg.classList.contains("zoomed")) return;
-    const bounds = lightboxImg.getBoundingClientRect();
-    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-    lightboxImg.style.setProperty("--lightbox-x", `${x}%`);
-    lightboxImg.style.setProperty("--lightbox-y", `${y}%`);
-  });
   lightbox?.addEventListener("click", (event) => {
     if (event.target === lightbox) closeLightbox();
   });
