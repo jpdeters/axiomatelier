@@ -1,0 +1,129 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Terra at High Point Market — Axiom Atelier"
+  description="Discover Terra, an original earth-and-mineral-pigment work by High Point artist Jason Deters, and connect directly with Axiom Atelier."
+  image="/images/pieces/terra-framed.jpg"
+>
+  <div class="market-page">
+    <section class="hero" aria-labelledby="terra-title">
+      <div class="hero-image">
+        <img src="/images/pieces/terra-framed.jpg" alt="Terra, an earth and mineral pigment painting by Jason Deters" loading="eager" />
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">Seen at High Point Market</p>
+        <h1 id="terra-title">Terra</h1>
+        <p class="subtitle">A Study in Latent Form</p>
+        <dl class="details">
+          <div><dt>Artist</dt><dd>Jason Deters</dd></div>
+          <div><dt>Medium</dt><dd>Earth and mineral pigments, modeling medium and raw linen</dd></div>
+          <div><dt>Dimensions</dt><dd>40 × 60 inches</dd></div>
+          <div><dt>Year</dt><dd>2026</dd></div>
+        </dl>
+        <button class="primary-button js-open-details" type="button">Send Me the Terra Details</button>
+        <a class="quiet-link" href="#the-work">Discover the work</a>
+      </div>
+    </section>
+
+    <section class="welcome" aria-labelledby="welcome-title">
+      <p class="eyebrow">Thank you for taking a closer look</p>
+      <h2 id="welcome-title">The encounter continues here.</h2>
+      <p>Terra is part of an emerging body of work by High Point artist and designer Jason Deters. The collection explores the boundary between imposed order and material behavior—where geometry, mineral pigment and natural processes are permitted to resolve the composition together.</p>
+    </section>
+
+    <section class="work" id="the-work" aria-labelledby="work-title">
+      <div class="detail-grid" aria-hidden="true">
+        <div class="detail detail-one"><img src="/images/pieces/terra-framed.jpg" alt="" loading="lazy" /></div>
+        <div class="detail detail-two"><img src="/images/pieces/terra-framed.jpg" alt="" loading="lazy" /></div>
+      </div>
+      <div class="work-copy">
+        <p class="eyebrow">About Terra</p>
+        <h2 id="work-title">Order gathers, collides and disperses.</h2>
+        <p>Terra begins in disciplined geometry and moves gradually toward dissolution. Crisp earthen forms gather, collide and disperse across raw linen. Mineral pigments bloom beyond their intended boundaries. Particulates settle into the surface. What initially appears controlled becomes vulnerable to gravity, water and the independent behavior of material.</p>
+        <p class="statement">The work is not a depiction of order overcoming chaos. It is the moment in which each begins to reveal the other.</p>
+      </div>
+    </section>
+
+    <section class="philosophy" aria-labelledby="philosophy-title">
+      <p class="eyebrow">A philosophy of making</p>
+      <h2 id="philosophy-title">Latent Form Theory</h2>
+      <p>Axiom Atelier is guided by the belief that a work is not simply imposed upon its materials. It is discovered through attention, restraint and response.</p>
+      <blockquote>Material without intention is inertia.<br />Intention without material is idea.<br />The work exists between them.</blockquote>
+      <a class="text-link" href="/manifesto" data-track="manifesto">Read the manifesto</a>
+    </section>
+
+    <section class="artist" aria-labelledby="artist-title">
+      <div><p class="eyebrow">The artist</p><h2 id="artist-title">Jason Deters</h2></div>
+      <div>
+        <p>Jason Deters is an artist, designer and craftsman based in High Point, North Carolina. Working with mineral pigment, linen, wood and earthen material, he creates abstract works that examine emergence, restraint and the intelligence of material.</p>
+        <p>Each piece is developed individually in his High Point studio according to Axiom Atelier’s Single Hand Standard—from the first compositional decision through the construction of its finished frame.</p>
+        <a class="text-link" href="/artist" data-track="artist">Meet the artist</a>
+      </div>
+    </section>
+
+    <section class="contact" aria-labelledby="contact-title">
+      <p class="eyebrow">Continue the conversation</p>
+      <h2 id="contact-title">For collectors, designers and those who looked twice.</h2>
+      <p>Request Terra’s complete details, ask about availability, or receive occasional private previews from the studio.</p>
+      <button class="primary-button inverse js-open-details" type="button">Send Me the Terra Details</button>
+      <p class="direct">No sales team. You’ll hear directly from the artist.</p>
+    </section>
+  </div>
+
+  <div class="dialog-backdrop" id="details-dialog" hidden>
+    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <button class="dialog-close" type="button" aria-label="Close">×</button>
+      <div id="form-state">
+        <p class="eyebrow">Terra · A Study in Latent Form</p>
+        <h2 id="dialog-title">Send me the details.</h2>
+        <p>Request material notes, availability and additional images directly from the artist.</p>
+        <form id="terra-form" action="https://formspree.io/f/mkodpean" method="POST">
+          <input type="hidden" name="_subject" value="High Point Market — Terra details request" />
+          <input type="hidden" name="source" value="HPMKT landing page" />
+          <input type="hidden" name="artwork" value="Terra — A Study in Latent Form" />
+          <input type="hidden" name="page_path" id="page-path" value="/hpmkt" />
+          <label for="market-email">Email address</label>
+          <input id="market-email" type="email" name="email" autocomplete="email" required />
+          <fieldset>
+            <legend>What best describes your interest? <span>Optional</span></legend>
+            <div class="interest-options">
+              <label><input type="radio" name="interest" value="Interior Designer" /><span>Interior Designer</span></label>
+              <label><input type="radio" name="interest" value="Collector" /><span>Collector</span></label>
+              <label><input type="radio" name="interest" value="Retail or Showroom" /><span>Retail or Showroom</span></label>
+              <label><input type="radio" name="interest" value="Gallery or Press" /><span>Gallery or Press</span></label>
+              <label><input type="radio" name="interest" value="Just Exploring" /><span>Just Exploring</span></label>
+            </div>
+          </fieldset>
+          <label class="consent"><input type="checkbox" name="studio_list_consent" value="Yes" /><span>I’d also like occasional previews of new work, exhibitions and High Point Market appearances.</span></label>
+          <button class="primary-button" type="submit">Request the Details</button>
+          <p class="privacy-note">Your information is used only to respond to this request and, if selected, send occasional studio correspondence. Unsubscribe at any time.</p>
+          <p class="form-error" id="form-error" role="alert" hidden>The form could not be sent. Please try again or use the contact page.</p>
+        </form>
+      </div>
+      <div id="success-state" hidden>
+        <p class="eyebrow">Request received</p>
+        <h2>Thank you for looking closer.</h2>
+        <p>Jason has received your request and will send Terra’s details directly.</p>
+        <a class="text-link" href="/collections" data-track="success-collections">Explore available work</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  :global(body){background:#e9e2d4;color:#181713}:global(main){max-width:none;padding:0}.market-page{overflow:hidden}.hero{min-height:calc(100vh - 100px);display:grid;grid-template-columns:minmax(0,1.12fr) minmax(360px,.88fr);background:#d7c9b5}.hero-image{min-height:760px;background:#25231f}.hero-image img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(4rem,8vw,9rem)}.eyebrow{margin:0 0 1.25rem;color:#786e60;font-family:Arial,sans-serif;font-size:.68rem;letter-spacing:.2em;line-height:1.4;text-transform:uppercase}h1,h2{font-weight:400;letter-spacing:-.045em}h1{margin:0;font-size:clamp(4.8rem,10vw,10rem);line-height:.82}.subtitle{margin:1.1rem 0 3.25rem;font-size:clamp(1.25rem,2vw,1.8rem);font-style:italic}.details{margin:0 0 2.75rem;padding:0}.details div{display:grid;grid-template-columns:78px 1fr;gap:1.25rem;padding:.55rem 0;border-top:1px solid rgba(24,23,19,.18)}.details dt{color:#756b5e;font-family:Arial,sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}.details dd{margin:0;line-height:1.5}.primary-button{align-self:flex-start;padding:1rem 1.45rem;border:1px solid #181713;border-radius:0;background:#181713;color:#f2ede3;font:inherit;cursor:pointer}.primary-button:hover,.primary-button:focus-visible{background:transparent;color:#181713}.quiet-link,.text-link{display:block;width:fit-content;margin-top:1.5rem;padding-bottom:.2rem;border-bottom:1px solid currentColor;color:inherit;text-decoration:none}.welcome,.philosophy,.artist,.contact{padding:clamp(6rem,12vw,11rem) max(1.35rem,calc((100vw - 1180px)/2))}.welcome{background:#f1ece2}.welcome h2,.work h2,.philosophy h2,.artist h2,.contact h2,.dialog h2{margin:0 0 2rem;max-width:900px;font-size:clamp(2.75rem,6vw,6.25rem);line-height:.98}.welcome>p:last-child{max-width:710px;margin:3rem 0 0 auto;font-size:clamp(1.1rem,1.7vw,1.4rem);line-height:1.75}.work{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(380px,.88fr);background:#28251f;color:#ede7db}.detail-grid{display:grid;grid-template-columns:1fr 1fr;min-height:900px}.detail{overflow:hidden}.detail img{width:200%;max-width:none;height:100%;display:block;object-fit:cover}.detail-one img{object-position:18% 45%}.detail-two img{margin-left:-100%;object-position:82% 55%}.work-copy{align-self:center;padding:clamp(4rem,7vw,8rem)}.work-copy .eyebrow,.contact .eyebrow{color:#b9ab98}.work-copy p{line-height:1.8}.statement{margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(237,231,219,.25);font-size:1.25rem;font-style:italic}.philosophy{background:#c6aa8e}.philosophy>p:not(.eyebrow){max-width:670px;font-size:1.15rem;line-height:1.75}blockquote{margin:clamp(3rem,8vw,7rem) 0 0 auto;max-width:850px;font-size:clamp(2rem,4.8vw,4.8rem);line-height:1.2}.artist{display:grid;grid-template-columns:.75fr 1fr;gap:clamp(3rem,10vw,10rem);background:#eee9df}.artist p{max-width:650px;margin-top:0;font-size:1.08rem;line-height:1.8}.contact{background:#191814;color:#f0eadf;text-align:center}.contact h2{margin-inline:auto}.contact>p:not(.eyebrow):not(.direct){max-width:650px;margin:0 auto 2.5rem;font-size:1.1rem;line-height:1.7}.contact .primary-button{align-self:auto}.primary-button.inverse{border-color:#eee7da;background:#eee7da;color:#191814}.primary-button.inverse:hover,.primary-button.inverse:focus-visible{background:transparent;color:#eee7da}.direct{margin-top:1.25rem;color:#b9b0a2;font-size:.85rem}.dialog-backdrop{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;padding:1rem;background:rgba(14,13,11,.78);backdrop-filter:blur(6px)}.dialog-backdrop[hidden]{display:none}.dialog{position:relative;width:min(680px,100%);max-height:calc(100vh - 2rem);overflow-y:auto;padding:clamp(2rem,6vw,4.5rem);box-sizing:border-box;background:#f0eadf;box-shadow:0 24px 80px rgba(0,0,0,.3)}.dialog h2{font-size:clamp(2.5rem,6vw,4.75rem)}.dialog p{line-height:1.65}.dialog-close{position:absolute;top:.8rem;right:1.1rem;border:0;background:transparent;color:#181713;font-size:2rem;cursor:pointer}form{display:grid;gap:1.2rem;margin-top:2rem}form>label:not(.consent),legend{color:#4d473e;font-family:Arial,sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}input[type=email]{width:100%;box-sizing:border-box;padding:.95rem .75rem;border:1px solid #918778;border-radius:0;background:#faf7f0;color:#181713;font:1rem Georgia,serif}fieldset{margin:.5rem 0 0;padding:0;border:0}legend span{color:#8b8275;text-transform:none}.interest-options{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.8rem}.interest-options input{position:absolute;opacity:0}.interest-options span{display:block;padding:.65rem .8rem;border:1px solid #aea596;color:#3d3932;font:.78rem Arial,sans-serif;cursor:pointer}.interest-options input:checked+span{border-color:#181713;background:#181713;color:#f2ede3}.consent{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:start;color:#4d473e;font-size:.9rem;line-height:1.45}.consent input{margin-top:.2rem}.privacy-note,.form-error{margin:0;color:#746d62;font-size:.76rem}.form-error{color:#8a3025}#success-state{padding:2rem 0}@media(max-width:800px){.hero,.work,.artist{grid-template-columns:1fr}.hero{min-height:0}.hero-image{min-height:0;aspect-ratio:4/5}.hero-copy{padding:3.5rem 1.35rem 5rem}h1{font-size:clamp(4.5rem,24vw,7rem)}.detail-grid{min-height:480px}.work-copy{padding:5rem 1.35rem}.welcome,.philosophy,.artist,.contact{padding-top:5.5rem;padding-bottom:5.5rem}.artist{gap:1rem}blockquote{margin-top:3.5rem}.dialog{padding:3.5rem 1.35rem 2rem}}
+</style>
+
+<script>
+  const dialog=document.getElementById("details-dialog") as HTMLElement;const closeButton=dialog?.querySelector(".dialog-close") as HTMLButtonElement;const form=document.getElementById("terra-form") as HTMLFormElement;const formState=document.getElementById("form-state") as HTMLElement;const successState=document.getElementById("success-state") as HTMLElement;const errorMessage=document.getElementById("form-error") as HTMLElement;const pagePath=document.getElementById("page-path") as HTMLInputElement;let lastTrigger:HTMLElement|null=null;
+  const track=(eventName:string,parameters:Record<string,string>={})=>{const analytics=(window as any).gtag;if(typeof analytics==="function")analytics("event",eventName,parameters)};
+  pagePath.value=window.location.pathname+window.location.search;track("hpmkt_page_view",{artwork:"terra",campaign:new URLSearchParams(window.location.search).get("campaign")||"hpmkt"});
+  const openDialog=(trigger:HTMLElement)=>{lastTrigger=trigger;dialog.hidden=false;document.body.style.overflow="hidden";window.setTimeout(()=>(document.getElementById("market-email") as HTMLInputElement)?.focus(),0);track("terra_details_open")};
+  const closeDialog=()=>{dialog.hidden=true;document.body.style.overflow="";lastTrigger?.focus()};
+  document.querySelectorAll<HTMLElement>(".js-open-details").forEach(button=>button.addEventListener("click",()=>openDialog(button)));closeButton?.addEventListener("click",closeDialog);dialog?.addEventListener("click",event=>{if(event.target===dialog)closeDialog()});document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!dialog.hidden)closeDialog()});
+  document.querySelectorAll<HTMLElement>("[data-track]").forEach(link=>link.addEventListener("click",()=>track("hpmkt_link_click",{destination:link.dataset.track||"unknown"})));
+  let depthTracked=false;window.addEventListener("scroll",()=>{if(depthTracked)return;const pageHeight=document.documentElement.scrollHeight-window.innerHeight;if(pageHeight>0&&window.scrollY/pageHeight>=.75){depthTracked=true;track("hpmkt_scroll_75",{artwork:"terra"})}},{passive:true});
+  form?.addEventListener("submit",async event=>{event.preventDefault();errorMessage.hidden=true;const submitButton=form.querySelector('button[type="submit"]') as HTMLButtonElement;submitButton.disabled=true;submitButton.textContent="Sending…";try{const response=await fetch(form.action,{method:"POST",body:new FormData(form),headers:{Accept:"application/json"}});if(!response.ok)throw new Error("Submission failed");const selectedInterest=form.querySelector<HTMLInputElement>('input[name="interest"]:checked');const consent=form.querySelector<HTMLInputElement>('input[name="studio_list_consent"]');track("terra_details_request",{interest:selectedInterest?.value||"not_provided",studio_list_consent:consent?.checked?"yes":"no"});formState.hidden=true;successState.hidden=false}catch{errorMessage.hidden=false;submitButton.disabled=false;submitButton.textContent="Request the Details"}});
+</script>
