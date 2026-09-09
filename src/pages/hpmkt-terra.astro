@@ -3,30 +3,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Tectonic Restraint at High Point Market — Axiom Atelier"
-  description="Discover Tectonic Restraint, an original earth-and-mineral-pigment work by High Point artist Jason Deters, and connect directly with Axiom Atelier."
-  image="/images/pieces/tectonic-restraint-framed.jpg"
+  title="Terra at High Point Market — Axiom Atelier"
+  description="Discover Terra, an original earth-and-mineral-pigment work by High Point artist Jason Deters, and connect directly with Axiom Atelier."
+  image="/images/pieces/terra-framed.jpg"
 >
   <div class="market-page">
-    <section class="hero" aria-labelledby="tectonic-title">
+    <section class="hero" aria-labelledby="terra-title">
       <div class="hero-image">
         <img
-          src="/images/pieces/tectonic-restraint-framed.jpg"
-          alt="Tectonic Restraint, a material painting by Jason Deters"
+          src="/images/pieces/terra-framed.jpg"
+          alt="Terra, an earth and mineral pigment painting by Jason Deters"
           loading="eager"
         />
       </div>
       <div class="hero-copy">
         <p class="eyebrow">Seen at High Point Market</p>
-        <h1 class="tectonic-title" id="tectonic-title">Tectonic Restraint</h1>
-        <p class="subtitle">Pressure held at the edge of fracture</p>
+        <h1 id="terra-title">Terra</h1>
+        <p class="subtitle">A Study in Latent Form</p>
         <dl class="details">
           <div><dt>Artist</dt><dd>Jason Deters</dd></div>
-          <div><dt>Medium</dt><dd>Earth and mineral pigments, textile, carbon and mixed media</dd></div>
-          <div><dt>Dimensions</dt><dd>36 × 48 inches</dd></div>
+          <div><dt>Medium</dt><dd>Earth and mineral pigments, modeling medium and raw linen</dd></div>
+          <div><dt>Dimensions</dt><dd>40 × 60 inches</dd></div>
           <div><dt>Year</dt><dd>2026</dd></div>
         </dl>
-        <button class="primary-button js-open-details" type="button">Send Me the Details</button>
+        <button class="primary-button js-open-details" type="button">Send Me the Terra Details</button>
         <a class="quiet-link" href="#the-work">Discover the work</a>
       </div>
     </section>
@@ -35,31 +35,32 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <p class="eyebrow">Thank you for taking a closer look</p>
       <h2 id="welcome-title">The encounter continues here.</h2>
       <p>
-        <em>Tectonic Restraint</em> is part of an emerging body of work by High Point artist and designer Jason Deters. The
-        collection explores the boundary between imposed order and material behavior—where pressure,
-        fracture and natural processes are permitted to resolve the composition together.
+        Terra is part of an emerging body of work by High Point artist and designer Jason Deters. The
+        collection explores the boundary between imposed order and material behavior—where geometry,
+        mineral pigment and natural processes are permitted to resolve the composition together.
       </p>
     </section>
 
     <section class="work" id="the-work" aria-labelledby="work-title">
       <div class="detail-full">
         <img
-          src="/images/pieces/tectonic-restraint-framed.jpg"
-          alt="Tectonic Restraint, shown in full"
+          src="/images/pieces/terra-framed.jpg"
+          alt="Terra, shown in full"
           loading="lazy"
         />
       </div>
       <div class="work-copy">
-        <p class="eyebrow">About Tectonic Restraint</p>
-        <h2 id="work-title">Pressure becomes visible at the moment it breaks.</h2>
+        <p class="eyebrow">About Terra</p>
+        <h2 id="work-title">Order gathers, collides and disperses.</h2>
         <p>
-          A compressed material field is interrupted by a single displaced fissure. Earth pigment,
-          textile and carbon accumulate across the surface as the composition moves between density
-          and exposure. The rupture does not destroy the underlying order; it makes the forces held
-          within it legible.
+          Terra begins in disciplined geometry and moves gradually toward dissolution. Crisp
+          earthen forms gather, collide and disperse across raw linen. Mineral pigments bloom beyond
+          their intended boundaries. Particulates settle into the surface. What initially appears
+          controlled becomes vulnerable to gravity, water and the independent behavior of material.
         </p>
         <p class="statement">
-          Restraint is not the absence of force. It is force held precisely at the edge of release.
+          The work is not a depiction of order overcoming chaos. It is the moment in which each
+          begins to reveal the other.
         </p>
       </div>
     </section>
@@ -102,8 +103,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="contact" aria-labelledby="contact-title">
       <p class="eyebrow">Continue the conversation</p>
       <h2 id="contact-title">For collectors, designers and those who looked twice.</h2>
-      <p>Request the work’s complete details, ask about availability, or receive occasional private previews from the studio.</p>
-      <button class="primary-button inverse js-open-details" type="button">Send Me the Details</button>
+      <p>Request Terra’s complete details, ask about availability, or receive occasional private previews from the studio.</p>
+      <button class="primary-button inverse js-open-details" type="button">Send Me the Terra Details</button>
       <p class="direct">No sales team. You’ll hear directly from the artist.</p>
     </section>
   </div>
@@ -112,13 +113,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
       <button class="dialog-close" type="button" aria-label="Close">×</button>
       <div id="form-state">
-        <p class="eyebrow">Tectonic Restraint</p>
+        <p class="eyebrow">Terra · A Study in Latent Form</p>
         <h2 id="dialog-title">Send me the details.</h2>
         <p>Request material notes, availability and additional images directly from the artist.</p>
-        <form id="tectonic-form" action="https://formspree.io/f/mkodpean" method="POST">
-          <input type="hidden" name="_subject" value="High Point Market — Tectonic Restraint details request" />
+        <form id="terra-form" action="https://formspree.io/f/mkodpean" method="POST">
+          <input type="hidden" name="_subject" value="High Point Market — Terra details request" />
           <input type="hidden" name="source" value="HPMKT landing page" />
-          <input type="hidden" name="artwork" value="Tectonic Restraint" />
+          <input type="hidden" name="artwork" value="Terra — A Study in Latent Form" />
           <input type="hidden" name="page_path" id="page-path" value="/hpmkt" />
 
           <label for="market-email">Email address</label>
@@ -153,7 +154,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div id="success-state" hidden>
         <p class="eyebrow">Request received</p>
         <h2>Thank you for looking closer.</h2>
-        <p>Jason has received your request and will send the work’s details directly.</p>
+        <p>Jason has received your request and will send Terra’s details directly.</p>
         <a class="text-link" href="/collections" data-track="success-collections">Explore available work</a>
       </div>
     </section>
@@ -175,55 +176,31 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     overflow: hidden;
   }
 
-.hero {
-    /* Lock the hero height cleanly to the visible screen */
+  .hero {
     min-height: calc(100vh - 100px);
-    max-height: 1000px;
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.88fr);
     background: #d7c9b5;
-    overflow: hidden;
   }
 
   .hero-image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-width: 0;
-    min-height: 0;
+    min-height: 760px;
     background: #25231f;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3rem;
-    box-sizing: border-box;
   }
 
   .hero-image img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
     display: block;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .hero-copy {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(2rem, 4vw, 5rem);
-    min-width: 0;
-    overflow: hidden;
-  }
-
-  .tectonic-title {
-    margin: 0;
-    font-size: clamp(2.4rem, 4.2vw, 4.2rem);
-    line-height: 0.98;
-    white-space: normal;
-    word-break: normal;
+    padding: clamp(4rem, 8vw, 9rem);
   }
 
   .eyebrow {
@@ -246,12 +223,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     margin: 0;
     font-size: clamp(4.8rem, 10vw, 10rem);
     line-height: 0.82;
-  }
-
-  .tectonic-title {
-    max-width: 8ch;
-    font-size: clamp(3.5rem, 7vw, 7rem);
-    line-height: 0.9;
   }
 
   .subtitle {
@@ -622,10 +593,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       font-size: clamp(4.5rem, 24vw, 7rem);
     }
 
-    .tectonic-title {
-      font-size: clamp(3.6rem, 17vw, 6.5rem);
-    }
-
     .detail-full {
       min-height: 0;
       padding: 2rem 1.35rem;
@@ -660,7 +627,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <script>
   const dialog = document.getElementById("details-dialog") as HTMLElement;
   const closeButton = dialog?.querySelector(".dialog-close") as HTMLButtonElement;
-  const form = document.getElementById("tectonic-form") as HTMLFormElement;
+  const form = document.getElementById("terra-form") as HTMLFormElement;
   const formState = document.getElementById("form-state") as HTMLElement;
   const successState = document.getElementById("success-state") as HTMLElement;
   const errorMessage = document.getElementById("form-error") as HTMLElement;
@@ -679,7 +646,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   track("hpmkt_page_view", {
-    artwork: "tectonic_restraint",
+    artwork: "terra",
     campaign: new URLSearchParams(window.location.search).get("campaign") || "hpmkt",
   });
 
@@ -688,7 +655,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     dialog.hidden = false;
     document.body.style.overflow = "hidden";
     window.setTimeout(() => (document.getElementById("market-email") as HTMLInputElement)?.focus(), 0);
-    track("tectonic_details_open");
+    track("terra_details_open");
   };
 
   const closeDialog = () => {
@@ -725,7 +692,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (pageHeight > 0 && window.scrollY / pageHeight >= 0.75) {
         depthTracked = true;
-        track("hpmkt_scroll_75", { artwork: "tectonic_restraint" });
+        track("hpmkt_scroll_75", { artwork: "terra" });
       }
     },
     { passive: true }
@@ -750,7 +717,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       const selectedInterest = form.querySelector<HTMLInputElement>('input[name="interest"]:checked');
       const consent = form.querySelector<HTMLInputElement>('input[name="studio_list_consent"]');
 
-      track("tectonic_details_request", {
+      track("terra_details_request", {
         interest: selectedInterest?.value || "not_provided",
         studio_list_consent: consent?.checked ? "yes" : "no",
       });
