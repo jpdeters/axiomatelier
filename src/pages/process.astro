@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
+import { artworks } from '../data/artworks';
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Process — Axiom Atelier">
-  <section class="practice-opening"><div><p class="practice-kicker">Earth · Mineral · Intervention</p><h1>Material &amp;<br />Process</h1><p>Creation is the revelation of form through essential subtraction.</p></div><img src="/images/pieces/tectonic-restraint-framed.jpg" alt="The mineral surface and displaced fissure of Tectonic Restraint" /></section>
+  <section class="practice-opening"><div><p class="practice-kicker">Earth · Mineral · Intervention</p><h1>Material &amp;<br />Process</h1><p>Creation is the revelation of form through essential subtraction.</p></div><Image src={artworks[1].cover} width={800} format="webp" alt="The mineral surface and displaced fissure of Tectonic Restraint" loading="eager" /></section>
   <section class="process">
 
 
