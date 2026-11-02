@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Selected Presentations — Axiom Atelier" description="Installation photographs of Terra and Tectonic Restraint, presented with Vincent Sheppard at 313 Space during Fall 2026 High Point Market." image="/images/presentations/fall-market-2026-installation.webp">
+  <div class="presentations">
+    <header>
+      <a class="back" href="/artist/">← Jason Deters</a>
+      <p class="eyebrow">Selected Presentations</p>
+      <h1>Work in place.</h1>
+      <p class="intro">Original paintings in dialogue with the spaces around them.</p>
+    </header>
+    <article id="fall-2026" aria-labelledby="market-heading">
+      <div class="heading">
+        <p class="eyebrow">Fall 2026<br />High Point, North Carolina</p>
+        <div><h2 id="market-heading">High Point Market</h2>
+          <p><em>Terra</em> and <em>Tectonic Restraint</em> were presented with Vincent Sheppard at 313 Space during Fall High Point Market. Set within the showroom’s interior vignettes, the paintings brought earth and mineral pigment into conversation with woven textures, timber and architectural surfaces.</p>
+        </div>
+      </div>
+      <figure class="installation">
+        <img src="/images/presentations/fall-market-2026-installation.webp" alt="Terra above a sofa and Tectonic Restraint at left in the Vincent Sheppard showroom" width="1536" height="1152" fetchpriority="high" />
+        <figcaption>Installation view · Vincent Sheppard, 313 Space · Fall High Point Market, 2026</figcaption>
+      </figure>
+      <div class="pair">
+        <figure><a href="/works/terra/"><img src="/images/presentations/terra-fall-market-2026.webp" alt="Terra installed above a woven sofa during Fall High Point Market" width="1152" height="1536" loading="lazy" /></a><figcaption><a href="/works/terra/"><em>Terra</em> · View the work →</a></figcaption></figure>
+        <figure><a href="/works/tectonic-restraint/"><img src="/images/presentations/tectonic-restraint-fall-market-2026.webp" alt="Tectonic Restraint installed above a dining vignette during Fall High Point Market" width="1152" height="1536" loading="lazy" /></a><figcaption><a href="/works/tectonic-restraint/"><em>Tectonic Restraint</em> · View the work →</a></figcaption></figure>
+      </div>
+    </article>
+    <a class="all-works" href="/available-works/">Explore available works →</a>
+  </div>
+</BaseLayout>
+<style>
+  :global(body){background:#f4f1e9}
+  .presentations{max-width:1180px;margin:auto;padding:clamp(24px,5vw,65px) clamp(20px,4vw,48px) 100px;color:#24241f}
+  a{color:inherit;text-decoration:none} a:focus-visible{outline:2px solid #755735;outline-offset:5px}
+  .back,.eyebrow,figcaption,.all-works{font-family:Arial,sans-serif;font-size:12px;line-height:1.7}
+  .back{display:inline-block;margin-bottom:65px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.14em;color:#70685c}
+  h1{font-size:clamp(56px,9vw,110px);font-weight:400;letter-spacing:-.05em;line-height:1;margin:20px 0}
+  .intro{font-size:clamp(19px,2.6vw,28px);line-height:1.5;max-width:620px}
+  header{padding-bottom:clamp(60px,9vw,110px)}
+  article{border-top:1px solid #cfc9bd;scroll-margin-top:30px}
+  .heading{display:grid;grid-template-columns:1fr 2fr;gap:40px;padding:50px 0}
+  h2{font-size:clamp(32px,4.5vw,56px);font-weight:400;letter-spacing:-.035em;margin:0 0 24px}
+  .heading p:not(.eyebrow){font-size:19px;line-height:1.8;max-width:680px}
+  figure{margin:0}img{display:block;width:100%;height:auto}figcaption{color:#70685c;margin-top:14px}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,50px);margin-top:55px}
+  .all-works{display:inline-block;margin-top:65px;border-bottom:1px solid;padding-bottom:6px}
+  @media(max-width:650px){.heading,.pair{grid-template-columns:1fr;gap:24px}.pair{gap:40px}.back{margin-bottom:40px}.heading{padding:32px 0}}
+</style>
