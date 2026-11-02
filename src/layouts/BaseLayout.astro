@@ -1,10 +1,10 @@
 ---
 const title = Astro.props.title ?? "Axiom Atelier";
-const image = Astro.props.image ?? "/images/default-share-image.jpg";
+const image = Astro.props.image ?? "/images/pieces/terra-framed.jpg";
 
 const descriptions = {
   "Axiom Atelier":
-    "Axiom Atelier is a studio making minimalist hardwood furniture and refined geological relief art.",
+    "Original earth and mineral pigment paintings by Jason Deters, made by one hand in High Point, North Carolina.",
   "Contact — Axiom Atelier":
     "Reach out to Axiom Atelier for inquiries about commissions, current pieces, or process questions.",
   "Collections — Axiom Atelier":
@@ -58,82 +58,54 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 </head>
 
   <body>
-    <header>
-      <nav>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <nav aria-label="Main navigation">
         <a href="/" class="logo">Axiom Atelier</a>
         <div class="links">
-          <a href="/manifesto">Manifesto</a>
-          <a href="/available-works/">Available Works</a>
-          <a href="/collections">Collections</a>
-          <a href="/artist">Artist</a>
-          <a href="/process">Process</a>
-          <a href="/contact">Contact</a>
+          <a href="/available-works/">Works</a>
+          <a href="/process/">Practice</a>
+          <a href="/artist/">Artist</a>
+          <a href="/contact/">Inquire</a>
         </div>
       </nav>
     </header>
 
-    <main>
+    <main id="content">
       <slot />
     </main>
 
-    <footer>
-      <p>&copy; {new Date().getFullYear()} Axiom Atelier</p>
+    <footer class="site-footer">
+      <div><a class="footer-brand" href="/">Axiom Atelier</a><p>Earth. Mineral. One hand.</p><p>High Point, North Carolina</p></div>
+      <div class="footer-links"><a href="/collections/">Collections &amp; objects</a><a href="/manifesto/">The manifesto</a><a href="https://latentformtheory.com">Latent Form Theory ↗</a><a href="mailto:jason@axiomatelier.com">jason@axiomatelier.com</a></div>
+      <p class="copyright">&copy; {new Date().getFullYear()} Axiom Atelier · Jason Deters</p>
     </footer>
   </body>
 </html>
 
-<style>
-  body {
-    margin: 0;
-    background: #faf9f6;
-    color: #161616;
-    font-family: Georgia, serif;
-  }
-
-  header, footer {
-    padding: 30px 40px;
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .logo {
-    font-size: 1.2rem;
-    letter-spacing: 0.02em;
-  }
-
-  .links {
-    display: flex;
-    gap: 22px;
-    flex-wrap: wrap;
-    justify-content: center;
-    font-size: 0.95rem;
-  }
-
-  main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-
-  footer {
-    text-align: center;
-    font-size: 0.85rem;
-    opacity: 0.6;
-  }
-
-  @media (max-width: 700px) {
-    nav {
-      flex-direction: column;
-      gap: 20px;
-    }
-  }
+<style is:global>
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:#f4f1e9; color:#29251f; font-family:Georgia,'Times New Roman',serif; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  p { line-height:1.75; }
+  h1,h2,h3 { font-weight:400; }
+  img { max-width:100%; }
+  .site-header { background:#20201d; color:#f4f1e9; padding:25px clamp(22px,4.5vw,72px); }
+  .site-header nav { max-width:1600px; margin:auto; display:flex; justify-content:space-between; align-items:center; gap:30px; }
+  .site-header .logo { font-size:clamp(17px,1.8vw,25px); text-transform:uppercase; letter-spacing:.24em; white-space:nowrap; }
+  .site-header .links { display:flex; align-items:center; gap:clamp(22px,3.5vw,52px); font-size:17px; letter-spacing:.08em; }
+  .site-header a { padding-block:5px; }
+  .site-header .links a:hover { color:#d6b996; }
+  body > main { max-width:1340px; margin:0 auto; padding:0 clamp(22px,4.5vw,64px); min-height:60vh; }
+  .site-footer { max-width:1480px; margin:auto; border-top:1px solid #bfb6a7; padding:55px clamp(22px,4.5vw,72px) 25px; display:grid; grid-template-columns:1fr 1fr; gap:30px; color:#5f584e; }
+  .footer-brand { font-size:22px; letter-spacing:.16em; text-transform:uppercase; color:#29251f; }
+  .site-footer p { font-size:13px; margin:10px 0; }
+  .footer-links { display:flex; flex-direction:column; align-items:flex-end; gap:15px; font-size:14px; }
+  .copyright { grid-column:1/-1; border-top:1px solid #d4ccbf; padding-top:22px; }
+  :focus-visible { outline:2px solid #9d7445; outline-offset:5px; }
+  .skip-link { position:absolute; left:20px; top:-100px; z-index:99; padding:12px; background:#f4f1e9; color:#20201d; }
+  .skip-link:focus { top:10px; }
+  @media(max-width:700px) { .site-header { padding:22px; } .site-header nav { flex-direction:column; gap:20px; } .site-header .links { width:100%; justify-content:space-between; font-size:14px; gap:12px; } .site-footer { grid-template-columns:1fr; } .footer-links { align-items:flex-start; } }
+  @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
 </style>

@@ -1,97 +1,49 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { artworks } from '../data/artworks';
 ---
-
-<BaseLayout title="Axiom Atelier">
-  <section class="hero">
-    <img src="/images/logo-mark.png" alt="" class="hero-watermark" />
-
-    <p class="eyebrow">A Philosophy of Making</p>
-    <h1>Axiom Atelier</h1>
-    <p class="tagline">Art, Objects and Furniture shaped by what remains.</p>
-    <p class="intro">
-      Each piece begins as more material than it needs to be. What remains is what matters.
-    </p>
-    <div class="cta">
-      <a href="/collections" class="button primary">View the Collection</a>
-      <a href="/manifesto" class="button secondary">Read the Manifesto</a>
+<BaseLayout title="Axiom Atelier" description="Earth and mineral pigment paintings by Jason Deters. Original works, made by one hand in High Point, North Carolina.">
+  <section class="arrival" aria-labelledby="arrival-title">
+    <div class="arrival-copy">
+      <h1 id="arrival-title">A presence.<br />A material.<br />A singular work.</h1>
+      <p>Earth and mineral pigment paintings,<br class="desktop-break" /> made by one hand in High Point, North Carolina.</p>
+      <a class="underlined" href="/available-works/">View available works</a>
     </div>
+    <figure class="arrival-art">
+      <a href="/works/terra/" aria-label="Discover Terra"><Image src={artworks[0].cover} width={1200} widths={[640,900,1200]} sizes="(max-width: 760px) 100vw, 50vw" format="webp" quality={90} alt="Terra, original earth and mineral pigment painting by Jason Deters" loading="eager" fetchpriority="high" /></a>
+      <figcaption><em>Terra</em> / 60″ H × 40″ W</figcaption>
+    </figure>
   </section>
+  <section class="selected" aria-labelledby="selected-title">
+    <div class="section-head"><h2 id="selected-title">Selected works</h2><a class="underlined" href="/collections/">Explore the collection →</a></div>
+    <div class="selected-grid">{artworks.map(work => <article><a class="selected-image" href={`/works/${work.slug}/`}><Image src={work.cover} width={800} widths={[480,800]} sizes="(max-width: 760px) 100vw, 45vw" format="webp" alt={`${work.title}, framed original painting`} loading="lazy" /></a><div class="work-caption"><h3><a href={`/works/${work.slug}/`}>{work.title}</a></h3><span>{work.height}″ H × {work.width}″ W</span></div></article>)}</div>
+  </section>
+  <section class="philosophy"><p class="eyebrow">The practice</p><h2>The maker’s role<br />is to recognize.</h2><div><p>Earth carries its own color, history, and tendencies. The work begins by paying attention. Through deliberate intervention and essential subtraction, an order becomes visible.</p><p>Every painting is made solely by Jason Deters, from the first preparation to its final resolution.</p><a class="underlined" href="/process/">Material &amp; process →</a></div></section>
+  <section class="invitation"><p class="eyebrow">Collectors · Designers · Considered spaces</p><h2>A work. A place.<br />A conversation.</h2><a class="underlined" href="/contact/">Begin an inquiry →</a></section>
 </BaseLayout>
-
 <style>
-  .hero {
-    padding: 100px 0;
-    position: relative;
-  }
-
-  .hero-watermark {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 180px;
-    height: auto;
-    opacity: 0.4;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.85rem;
-    color: #7a7a7a;
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-size: 4rem;
-    margin: 0 0 30px 0;
-    line-height: 1.1;
-  }
-
-  .tagline {
-    font-size: 1.3rem;
-    font-style: italic;
-    color: #444;
-    margin-bottom: 20px;
-  }
-
-  .intro {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin-bottom: 50px;
-  }
-
-  .cta {
-    display: flex;
-    gap: 20px;
-  }
-
-  .button {
-    padding: 14px 28px;
-    border: 1px solid #161616;
-    font-size: 0.95rem;
-  }
-
-  .button.primary {
-    background: #161616;
-    color: #faf9f6;
-  }
-
-  .button.secondary {
-    background: transparent;
-  }
-
-  @media (max-width: 700px) {
-    h1 {
-      font-size: 2.5rem;
-    }
-    .cta {
-      flex-direction: column;
-    }
-    .hero-watermark {
-      width: 100px;
-    }
-  }
+  :global(body > main) { max-width:none; padding:0; }
+  .arrival { display:grid; grid-template-columns:1fr 1fr; align-items:center; background:radial-gradient(ellipse at 25% 25%,#faf6ed 0%,#e5dbcd 85%); padding:0 clamp(22px,4.5vw,72px); min-height:calc(100svh - 92px); }
+  .arrival-copy { padding:65px 25px 95px 0; }
+  h1 { font-size:clamp(44px,5.7vw,88px); line-height:1.07; letter-spacing:-.05em; margin:0 0 40px; }
+  .arrival-copy p { font-size:clamp(17px,1.65vw,24px); line-height:1.5; max-width:540px; margin-bottom:38px; }
+  .underlined { display:inline-block; padding:0 0 8px; border-bottom:1px solid currentColor; font-size:13px; text-transform:uppercase; letter-spacing:.12em; }
+  .arrival-art { margin:0; padding:25px 0 18px; text-align:center; }
+  .arrival-art img { display:block; width:100%; height:auto; max-height:calc(100svh - 160px); object-fit:contain; mix-blend-mode:multiply; }
+  figcaption { font-size:14px; padding:15px 0 0; color:#5b5144; }
+  .selected,.philosophy,.invitation { max-width:1340px; margin:auto; padding:70px clamp(22px,4.5vw,64px); }
+  .section-head { display:flex; align-items:center; justify-content:space-between; gap:25px; border-top:1px solid #bfb6a7; padding-top:26px; margin-bottom:38px; }
+  h2 { margin:0; font-size:clamp(36px,4.2vw,64px); line-height:1.1; letter-spacing:-.035em; }
+  .selected-grid { display:grid; grid-template-columns:1fr 1fr; gap:50px; }
+  .selected-image { display:block; background:#e8e1d5; padding:22px; }
+  .selected-image img { display:block; width:100%; height:560px; object-fit:contain; mix-blend-mode:multiply; }
+  .work-caption { display:flex; justify-content:space-between; gap:15px; align-items:baseline; padding-top:18px; }
+  h3 { margin:0; font-size:26px; } .work-caption span { font-size:12px; color:#756b5d; white-space:nowrap; }
+  .philosophy { display:grid; grid-template-columns:1fr 1fr; gap:20px 65px; border-top:1px solid #cfc6b8; padding-block:95px; }
+  .eyebrow { grid-column:1/-1; font-family:Arial,sans-serif; text-transform:uppercase; letter-spacing:.17em; font-size:11px; color:#746957; }
+  .philosophy p:not(.eyebrow) { font-size:19px; margin-top:0; }
+  .invitation { padding-block:90px 110px; } .invitation h2 { margin:20px 0 35px; }
+  @media(min-width:1600px) { .arrival { padding-inline:max(72px,calc((100vw - 1480px)/2)); } }
+  @media(max-width:760px) { .arrival { grid-template-columns:1fr; } .arrival-copy { padding:55px 0 35px; } h1 { font-size:clamp(43px,9.5vw,70px); margin-bottom:25px; } .arrival-art { padding-top:0; } .arrival-art img { max-height:none; } .selected-grid,.philosophy { grid-template-columns:1fr; } .selected-image img { height:auto; max-height:650px; } .section-head { align-items:flex-start; flex-direction:column; } .selected,.philosophy,.invitation { padding-block:55px; } .desktop-break { display:none; } }
 </style>

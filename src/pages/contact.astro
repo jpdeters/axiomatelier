@@ -4,10 +4,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="Contact — Axiom Atelier">
   <section class="contact">
-    <h1>Get in Touch</h1>
+    <p class="eyebrow">Acquisitions · Trade · Commissions</p><h1>Begin a conversation.</h1>
 
     <p>
-      Interested in a piece, a commission, or just want to see more of the process?
+      For a particular work, a commission, or a project taking shape. Tell me what drew your attention and where the work might live.
     </p>
 
     <form class="contact-form" action="https://formspree.io/f/mkodpean" method="POST">
@@ -32,7 +32,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </form>
 
     <p class="etsy-note">
-      Or find current available pieces on <a href="https://axiomatelier.online" target="_blank" rel="noopener">axiomatelier.online</a>.
+      Or write directly to <a href="mailto:jason@axiomatelier.com">jason@axiomatelier.com</a>.
     </p>
   </section>
 </BaseLayout>
@@ -44,7 +44,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight:400;
+    letter-spacing:-.04em;
     margin-bottom: 30px;
   }
 

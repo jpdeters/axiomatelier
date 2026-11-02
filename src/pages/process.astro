@@ -3,8 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Process — Axiom Atelier">
+  <section class="practice-opening"><div><p class="practice-kicker">Earth · Mineral · Intervention</p><h1>Material &amp;<br />Process</h1><p>Creation is the revelation of form through essential subtraction.</p></div><img src="/images/pieces/tectonic-restraint-framed.jpg" alt="The mineral surface and displaced fissure of Tectonic Restraint" /></section>
   <section class="process">
-    <h1>Material &amp; Process</h1>
+
 
     <p>Every work begins with an encounter with material.</p>
 
@@ -29,6 +30,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
+  .practice-opening { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; padding:65px 0; border-bottom:1px solid #cfc6b8; }
+  .practice-opening h1 { font-size:clamp(44px,6vw,80px); font-weight:400; line-height:1.03; letter-spacing:-.04em; margin:20px 0 30px; }
+  .practice-opening img { width:100%; max-height:600px; object-fit:contain; }
+  .practice-kicker { font:11px Arial,sans-serif; letter-spacing:.15em; text-transform:uppercase; }
+  @media(max-width:760px) { .practice-opening { grid-template-columns:1fr; gap:25px; padding-top:40px; } }
+
   .process {
     padding: 80px 0;
     max-width: 700px;

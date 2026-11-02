@@ -52,7 +52,7 @@ const objects = [
     <a href="/available-works/" class="text-link">View available paintings &amp; prices →</a>
   </header>
 
-  <main>
+  <div class="editorial-page">
     <section class="collection paintings" aria-labelledby="paintings-heading">
       <div class="section-heading">
         <div>
@@ -87,35 +87,6 @@ const objects = [
             </div>
           </article>
         ))}
-      </div>
-    </section>
-
-    <section class="collection in-progress" aria-labelledby="progress-heading">
-      <div class="progress-image">
-        <button
-          class="artwork-image"
-          type="button"
-          data-lightbox-src="/images/pieces/work-in-progress.jpeg"
-          data-lightbox-alt="An original Axiom Atelier painting in progress"
-          aria-label="View the work in progress larger"
-        >
-          <img
-            src="/images/pieces/work-in-progress.jpeg"
-            alt="An original Axiom Atelier painting in progress"
-            loading="lazy"
-          />
-        </button>
-      </div>
-      <div class="progress-copy">
-        <p class="eyebrow">From the studio</p>
-        <h2 id="progress-heading">A body of work in formation</h2>
-        <p>
-          The inaugural collection continues to develop through an ongoing investigation
-          of order, material intelligence, and entropic change. This image documents a
-          work in progress; the final composition will be determined through the material
-          process rather than imposed in advance.
-        </p>
-        <p class="status">Work in progress · Final work forthcoming</p>
       </div>
     </section>
 
@@ -162,7 +133,7 @@ const objects = [
       </p>
       <a href="/contact" class="button primary">Begin an inquiry</a>
     </section>
-  </main>
+  </div>
 
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Expanded artwork" aria-hidden="true">
     <button id="lightbox-close" class="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
