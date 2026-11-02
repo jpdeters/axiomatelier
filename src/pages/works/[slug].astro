@@ -1,0 +1,177 @@
+---
+import { getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { artworks, priceLabel, type Artwork } from '../../data/artworks';
+export function getStaticPaths() {
+  return artworks.map(work => ({ params: { slug: work.slug }, props: { work } }));
+}
+const { work } = Astro.props as { work: Artwork };
+const cover = await getImage({src:work.cover,width:2000,format:'webp',quality:86});
+const shareImage = await getImage({src:work.cover,width:1200,format:'webp',quality:86});
+const images = [
+  { src: cover.src, original: work.original, label: 'Framed view' },
+  { src: work.slug === 'terra' ? '/images/pieces/terra-final.jpg' : '/images/pieces/tectonic-restraint.jpg', original: work.slug === 'terra' ? '/images/pieces/terra-final.jpg' : '/images/pieces/tectonic-restraint.jpg', label: 'Additional view' },
+];
+---
+<BaseLayout title={`${work.title} — Axiom Atelier`} description={`${work.title} by Jason Deters. ${work.height} × ${work.width} inches. ${priceLabel(work.price)} USD. View the original painting and arrange purchase directly with the artist.`} image={shareImage.src}>
+  <div class="work-page">
+    <a class="back" href="/available-works/">← Available Works</a>
+    <div class="work-layout">
+      <section class="photographs" aria-label={`${work.title} photographs`}>
+        <a id="image-link" href={work.original} target="_blank" rel="noopener" aria-label={`Enlarge ${work.title}`}>
+          <img id="main-image" src={images[0].src} alt={`${work.title}, framed original painting by Jason Deters`} width={work.slug === 'terra' ? 1352 : 1557} height="2000" />
+          <span class="enlarge-label">Enlarge image ↗</span>
+        </a>
+        <div class="image-options" aria-label="Choose a view">
+          {images.map((img,index) => <button type="button" data-image={img.src} data-original={img.original} data-alt={`${work.title} — ${img.label}`} aria-pressed={index === 0 ? 'true' : 'false'}>{img.label}</button>)}
+        </div>
+      </section>
+      <section class="information" aria-labelledby="work-title">
+        <p class="eyebrow">Original painting · Jason Deters</p>
+        <h1 id="work-title">{work.title}</h1>
+        <p class="price">{priceLabel(work.price)} <span>USD</span></p>
+        <p class="availability">{work.status === 'available' ? 'Available for acquisition' : 'Sold · Private collection'}</p>
+        <dl>
+          <div><dt>Dimensions</dt><dd>{work.height}″ H × {work.width}″ W<br /><span>Painting dimensions, excluding frame</span></dd></div>
+          <div><dt>Materials</dt><dd>{work.materials}</dd></div>
+          <div><dt>Year</dt><dd>2026</dd></div>
+          <div><dt>Authenticity</dt><dd>Original work · Certificate of authenticity included</dd></div>
+        </dl>
+        <p class="description">{work.description}</p>
+        {work.status === 'available' && <>
+          {work.purchaseUrl ? <a class="primary" href={work.purchaseUrl}>Purchase this work →</a> : <a class="primary" href="#acquisition">Request purchase &amp; delivery →</a>}
+          <p class="delivery">Delivery is arranged individually. Applicable tax and delivery are additional; the complete total is confirmed before payment.</p>
+          <a class="trade" href={`mailto:jason@axiomatelier.com?subject=${encodeURIComponent(`${work.title} — designer / trade inquiry`)}`}>Designer / trade inquiry</a>
+        </>}
+      </section>
+    </div>
+    {work.status === 'available' && <section id="acquisition" class="acquisition" aria-labelledby="acquisition-title">
+      <div>
+        <p class="eyebrow">Direct from the artist</p>
+        <h2 id="acquisition-title">Bring {work.title} into your collection.</h2>
+        <p>Send your delivery location and Jason will reply to confirm availability, delivery arrangements and the complete purchase total.</p>
+        <p class="small">This is a purchase request. No payment is collected and the painting is not reserved by submitting this form.</p>
+        <a class="trade" href={`mailto:jason@axiomatelier.com?subject=${encodeURIComponent(`${work.title} — purchase and delivery request`)}`}>Prefer email? Contact Jason directly →</a>
+      </div>
+      <form action="https://formspree.io/f/mkodpean" method="POST">
+        <input type="hidden" name="_subject" value={`Purchase request — ${work.title}`} />
+        <input type="hidden" name="artwork" value={work.title} />
+        <input type="hidden" name="listed_price_usd" value={work.price} />
+        <input type="hidden" name="source" value={`/works/${work.slug}/`} />
+        <label>Name<input name="name" autocomplete="name" required maxlength="150" /></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required maxlength="254" /></label>
+        <label>Delivery city and ZIP / postal code<input name="delivery_location" autocomplete="off" required maxlength="200" /></label>
+        <label>Country<input name="country" autocomplete="country-name" required maxlength="100" /></label>
+        <label>Anything else? <span>(optional)</span><textarea name="message" rows="3" maxlength="3000" placeholder="Local pickup, installation timing, or questions about the work"></textarea></label>
+        <p class="small">Your details are used to respond to this request.</p>
+        <button class="primary" type="submit">Send purchase request →</button>
+        <p id="form-status" role="status" aria-live="polite" hidden></p>
+      </form>
+    </section>}
+  </div>
+  <dialog id="image-dialog" aria-label={`${work.title} enlarged image`}>
+    <div class="dialog-toolbar"><button id="zoom-image" type="button" aria-pressed="false">Zoom in</button><button id="close-image" type="button" autofocus>Close ×</button></div>
+    <div class="image-scroll"><img id="enlarged-image" alt="" /></div>
+  </dialog>
+</BaseLayout>
+<style>
+  :global(body) { background:#f4f1e9; }
+  :global(main) { max-width:1340px; padding:0 clamp(20px,4vw,64px); }
+  .work-page { padding:35px 0 70px; color:#24241f; }
+  a { color:inherit; text-decoration:none; }
+  .back,.eyebrow,.price,.availability,dt,dd,.primary,.delivery,.trade,.small,label,.image-options,.enlarge-label,.dialog-toolbar { font-family:Arial,sans-serif; }
+  .back { display:inline-block; font-size:12px; margin-bottom:35px; }
+  .work-layout { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:clamp(30px,5vw,75px); align-items:start; }
+  #image-link { position:relative; display:block; background:#e9e4d9; padding:20px; }
+  #main-image { display:block; width:100%; height:auto; max-height:80vh; object-fit:contain; }
+  .enlarge-label { position:absolute; bottom:12px; right:12px; padding:10px; background:#faf9f6; font-size:11px; }
+  .image-options { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+  .image-options button { font:inherit; font-size:12px; background:transparent; border:1px solid #b9b2a4; color:inherit; padding:12px; cursor:pointer; }
+  .image-options button[aria-pressed="true"] { background:#e1dacd; border-color:#5e574a; }
+  .eyebrow { text-transform:uppercase; letter-spacing:.16em; font-size:10px; color:#6b6254; margin:8px 0 20px; }
+  h1 { font-size:clamp(38px,4.5vw,64px); font-weight:400; letter-spacing:-.045em; line-height:1.05; margin:0 0 25px; }
+  .price { font-size:24px; margin:0; } .price span { font-size:11px; color:#6b6254; }
+  .availability { font-size:12px; color:#625d50; margin:12px 0 28px; }
+  dl { margin:0; } dl div { display:grid; grid-template-columns:90px 1fr; gap:16px; padding:15px 0; border-top:1px solid #cdc6b9; }
+  dt { font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:#6b6254; }
+  dd { margin:0; font-size:12px; line-height:1.7; } dd span { color:#756c5d; font-size:11px; }
+  .description { line-height:1.7; font-size:18px; margin:20px 0 28px; }
+  .primary { box-sizing:border-box; display:block; width:100%; border:1px solid #27271f; background:#27271f; color:#faf9f6; text-align:center; padding:18px 15px; font-size:13px; cursor:pointer; }
+  .primary:hover { background:#494737; }
+  .delivery,.small { font-size:12px; line-height:1.7; color:#6b6254; }
+  .trade { display:inline-block; font-size:12px; border-bottom:1px solid; padding-bottom:4px; margin-top:10px; }
+  .acquisition { display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,6vw,90px); border-top:1px solid #cdc6b9; margin-top:80px; padding-top:50px; scroll-margin-top:30px; }
+  h2 { font-size:clamp(30px,3vw,43px); font-weight:400; letter-spacing:-.025em; margin:0 0 20px; }
+  .acquisition p:not(.eyebrow):not(.small) { line-height:1.7; }
+  form { display:grid; gap:17px; } label { display:grid; gap:8px; font-size:12px; } label span { color:#6b6254; }
+  input,textarea { box-sizing:border-box; width:100%; padding:13px; background:#faf9f6; color:#24241f; border:1px solid #b9b2a4; border-radius:0; font:16px Arial,sans-serif; }
+  :focus-visible { outline:2px solid #755735; outline-offset:4px; }
+  #form-status { font-size:14px; line-height:1.6; }
+  dialog { box-sizing:border-box; width:96vw; max-width:none; height:94vh; max-height:94vh; padding:0; border:0; background:#24241f; color:#faf9f6; }
+  dialog::backdrop { background:rgba(0,0,0,.8); }
+  .dialog-toolbar { display:flex; justify-content:space-between; align-items:center; padding:10px 20px; height:55px; box-sizing:border-box; }
+  .dialog-toolbar p { font-size:12px; } .dialog-toolbar button { background:transparent; color:inherit; border:1px solid #8f887b; padding:8px 14px; cursor:pointer; font:inherit; font-size:13px; }
+  .image-scroll { height:calc(100% - 55px); overflow:auto; display:flex; }
+  .image-scroll.zoomed { display:block; }
+  #enlarged-image { display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; margin:auto; }
+  .zoomed #enlarged-image { max-width:none; max-height:none; width:1600px; height:auto; }
+  @media(max-width:760px) { .work-layout,.acquisition { grid-template-columns:1fr; } .work-page { padding-top:15px; } .acquisition { margin-top:45px; } #main-image { max-height:none; } }
+</style>
+<script>
+  const mainImage = document.querySelector<HTMLImageElement>('#main-image');
+  const imageLink = document.querySelector<HTMLAnchorElement>('#image-link');
+  const dialog = document.querySelector<HTMLDialogElement>('#image-dialog');
+  const enlarged = document.querySelector<HTMLImageElement>('#enlarged-image');
+  document.querySelectorAll<HTMLButtonElement>('[data-image]').forEach(button => {
+    button.addEventListener('click', () => {
+      if (!mainImage || !imageLink) return;
+      mainImage.src = button.dataset.image!;
+      mainImage.alt = button.dataset.alt!;
+      imageLink.href = button.dataset.original!;
+      document.querySelectorAll('[data-image]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    });
+  });
+  imageLink?.addEventListener('click', event => {
+    if (!dialog?.showModal || !enlarged || !mainImage || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    enlarged.src = mainImage.currentSrc || mainImage.src;
+    enlarged.alt = mainImage.alt;
+    const scrollArea = dialog.querySelector('.image-scroll');
+    scrollArea?.classList.remove('zoomed');
+    const zoomButton = document.querySelector<HTMLButtonElement>('#zoom-image')!;
+    zoomButton.textContent = 'Zoom in';
+    zoomButton.setAttribute('aria-pressed', 'false');
+    dialog.showModal();
+    document.documentElement.style.overflow = 'hidden';
+    dialog.querySelector('.image-scroll')?.scrollTo(0,0);
+  });
+  document.querySelector('#zoom-image')?.addEventListener('click', event => {
+    const zoomed = dialog?.querySelector('.image-scroll')?.classList.toggle('zoomed');
+    const button = event.currentTarget as HTMLButtonElement;
+    button.textContent = zoomed ? 'Fit image' : 'Zoom in';
+    button.setAttribute('aria-pressed', String(zoomed));
+    if (enlarged && imageLink && mainImage) enlarged.src = zoomed ? imageLink.href : (mainImage.currentSrc || mainImage.src);
+  });
+  document.querySelector('#close-image')?.addEventListener('click', () => dialog?.close());
+  dialog?.addEventListener('close', () => { document.documentElement.style.overflow = ''; imageLink?.focus(); });
+  const form = document.querySelector<HTMLFormElement>('#acquisition form');
+  form?.addEventListener('submit', async event => {
+    event.preventDefault();
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const status = document.querySelector<HTMLElement>('#form-status')!;
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    status.hidden = false;
+    status.textContent = 'Sending your request…';
+    try {
+      const response = await fetch(form.action, {method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+      if (!response.ok) throw new Error('Request failed');
+      status.textContent = 'Your request has been sent. Jason will reply by email to confirm availability, delivery and the complete total.';
+      button.textContent = 'Request sent';
+    } catch {
+      status.textContent = 'Your request could not be sent. Please try again or email jason@axiomatelier.com using the link alongside this form.';
+      button.disabled = false;
+      button.textContent = 'Send purchase request →';
+    }
+  });
+</script>

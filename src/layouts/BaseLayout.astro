@@ -63,6 +63,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <a href="/" class="logo">Axiom Atelier</a>
         <div class="links">
           <a href="/manifesto">Manifesto</a>
+          <a href="/available-works/">Available Works</a>
           <a href="/collections">Collections</a>
           <a href="/artist">Artist</a>
           <a href="/process">Process</a>
@@ -111,7 +112,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
   .links {
     display: flex;
-    gap: 30px;
+    gap: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
     font-size: 0.95rem;
   }
 

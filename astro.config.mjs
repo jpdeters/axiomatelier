@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  server: { allowedHosts: ['terminal.local'] },
   site: 'https://axiomatelier.com', // <-- Replace this with your actual website domain
   integrations: [sitemap()]
 });
