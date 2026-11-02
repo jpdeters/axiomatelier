@@ -20,3 +20,7 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Artwork dimensions
+
+Always present painting dimensions in height × width order throughout the website and related copy. Use explicit H and W labels where practical (for example, `60″ H × 40″ W`). Terra is 60 inches high × 40 inches wide; Tectonic Restraint is 48 inches high × 36 inches wide, excluding frames.
