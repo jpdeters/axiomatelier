@@ -63,11 +63,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <nav aria-label="Main navigation">
         <a href="/" class="logo">Axiom Atelier</a>
         <div class="links">
-          <a href="/available-works/">Works</a>
-          <a href="/process/">Practice</a>
+          <a href="/manifesto/">Manifesto</a>
+          <a href="/available-works/">Available Works</a>
+          <a href="/collections/">Collections</a>
           <a href="/artist/">Artist</a>
-          <a href="/contact/">Inquire</a>
+          <a href="/process/">Process</a>
+          <a href="/contact/">Contact</a>
         </div>
+        <details class="mobile-menu">
+          <summary aria-label="Open site navigation">Explore <span aria-hidden="true">☰</span></summary>
+          <div class="mobile-menu-links">
+            <a href="/manifesto/">Manifesto</a>
+            <a href="/available-works/">Available Works</a>
+            <a href="/collections/">Collections</a>
+            <a href="/artist/">Artist</a>
+            <a href="/process/">Process</a>
+            <a href="/contact/">Contact</a>
+          </div>
+        </details>
       </nav>
     </header>
 
@@ -94,7 +107,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   .site-header { background:#20201d; color:#f4f1e9; padding:25px clamp(22px,4.5vw,72px); }
   .site-header nav { max-width:1600px; margin:auto; display:flex; justify-content:space-between; align-items:center; gap:30px; }
   .site-header .logo { font-size:clamp(17px,1.8vw,25px); text-transform:uppercase; letter-spacing:.24em; white-space:nowrap; }
-  .site-header .links { display:flex; align-items:center; gap:clamp(22px,3.5vw,52px); font-size:17px; letter-spacing:.08em; }
+  .site-header .links { display:flex; align-items:center; gap:clamp(14px,2vw,30px); font-size:clamp(12px,1.1vw,16px); letter-spacing:.045em; }
+  .mobile-menu { display:none; }
   .site-header a { padding-block:5px; }
   .site-header .links a:hover { color:#d6b996; }
   body > main { max-width:1340px; margin:0 auto; padding:0 clamp(22px,4.5vw,64px); min-height:60vh; }
@@ -106,6 +120,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   :focus-visible { outline:2px solid #9d7445; outline-offset:5px; }
   .skip-link { position:absolute; left:20px; top:-100px; z-index:99; padding:12px; background:#f4f1e9; color:#20201d; }
   .skip-link:focus { top:10px; }
-  @media(max-width:700px) { .site-header { padding:22px; } .site-header nav { flex-direction:column; gap:20px; } .site-header .links { width:100%; justify-content:space-between; font-size:14px; gap:12px; } .site-footer { grid-template-columns:1fr; } .footer-links { align-items:flex-start; } }
+  @media(max-width:950px) {
+    .site-header { padding:20px 22px; }
+    .site-header nav { flex-wrap:wrap; gap:12px; }
+    .site-header .links { display:none; }
+    .mobile-menu { display:block; margin-left:auto; position:relative; font-size:14px; }
+    .mobile-menu summary { cursor:pointer; list-style:none; padding:10px 0 10px 14px; letter-spacing:.08em; }
+    .mobile-menu summary::-webkit-details-marker { display:none; }
+    .mobile-menu summary span { margin-left:12px; }
+    .mobile-menu-links { position:absolute; right:-22px; top:calc(100% + 20px); z-index:50; width:min(320px,90vw); background:#20201d; border-top:1px solid #6b655b; box-shadow:0 14px 25px #0003; padding:12px 25px 25px; display:flex; flex-direction:column; }
+    .mobile-menu-links a { padding:13px 0; border-bottom:1px solid #ffffff24; }
+    .site-footer { grid-template-columns:1fr; }
+    .footer-links { align-items:flex-start; }
+  }
+  @media(max-width:390px) { .site-header .logo { font-size:16px; letter-spacing:.13em; } }
   @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
 </style>
