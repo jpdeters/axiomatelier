@@ -3,7 +3,7 @@ import terraCover from '../assets/terra-framed.jpg';
 import tectonicCover from '../assets/tectonic-restraint-framed.jpg';
 
 export interface Artwork {
-  cover: ImageMetadata;
+  cover: ImageMetadata | string;
   slug: string;
   title: string;
   height: number;
@@ -29,6 +29,13 @@ export const artworks: Artwork[] = [
     materials: 'Earth and mineral pigments, textile, carbon and mixed media on panel',
     description: 'A compressed material field is interrupted by a displaced fissure. Earth pigment, textile and carbon make the forces held within the surface visible.',
     original: '/images/pieces/tectonic-restraint-framed.jpg', status: 'available',
+  },
+  {
+    cover: '/D0930949-9577-47CE-AB34-37056778E54E.png',
+    slug: 'ochre-vespers-study', title: 'Ochre Vespers — Study', height: 16, width: 20, price: 960,
+    materials: 'Earth and mineral pigments, mixed media on canvas · Walnut float frame included',
+    description: 'A quiet passage of ochre light, mineral water, and emerging vegetation. This original study stands independently while anticipating the larger Ochre Vespers work planned for early 2027.',
+    original: '/D0930949-9577-47CE-AB34-37056778E54E.png', status: 'available',
   },
 ];
 
