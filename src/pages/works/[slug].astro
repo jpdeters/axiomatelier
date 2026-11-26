@@ -120,7 +120,8 @@ const images = work.slug === 'ochre-vespers-study'
   .image-scroll.zoomed { display:block; }
   #enlarged-image { display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; margin:auto; }
   .zoomed #enlarged-image { max-width:none; max-height:none; width:1600px; height:auto; }
-  @media(max-width:760px) { .work-layout,.acquisition { grid-template-columns:1fr; } .work-page { padding-top:15px; } .acquisition { margin-top:45px; } #main-image { max-height:none; } }
+  @media(max-width:760px) { .work-layout,.acquisition { grid-template-columns:1fr; } .work-page { padding-top:15px; } .acquisition { margin-top:45px; } #main-image { max-height:none; } .texture-peek { opacity:1; transform:none; width:34%; height:28%; right:14px; bottom:14px; } }
+  @media(prefers-reduced-motion:reduce) { .texture-peek { transition:none; } }
 </style>
 <script>
   const mainImage = document.querySelector<HTMLImageElement>('#main-image');
