@@ -2,9 +2,11 @@
 import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { artworks, priceLabel } from '../data/artworks';
-const shareImage = await getImage({src:artworks[0].cover,width:1200,format:'webp'});
+const shareImage = typeof artworks[0].cover === 'string'
+  ? artworks[0].cover
+  : (await getImage({src:artworks[0].cover,width:1200,format:'webp'})).src;
 ---
-<BaseLayout title="Available Works — Axiom Atelier" description="Original earth and mineral pigment paintings by Jason Deters. Explore available works, dimensions and prices, and arrange purchase directly with the artist." image={shareImage.src}>
+<BaseLayout title="Available Works — Axiom Atelier" description="Original earth and mineral pigment paintings by Jason Deters. Explore available works, dimensions and prices, and arrange purchase directly with the artist." image={shareImage}>
   <div class="gallery-page">
     <header class="intro">
       <p class="eyebrow">Original paintings · Jason Deters</p>
@@ -16,7 +18,15 @@ const shareImage = await getImage({src:artworks[0].cover,width:1200,format:'webp
       {artworks.map((work, index) => (
         <article>
           <a class="picture" href={`/works/${work.slug}/`} aria-label={`View ${work.title}, dimensions and purchase details`}>
-            <Image src={work.cover} widths={[640,1200]} sizes="(max-width: 700px) 100vw, 50vw" width={1200} format="webp" quality={86} alt={`${work.title}, framed original painting by Jason Deters`} loading={index === 0 ? 'eager' : 'lazy'} />
+            {typeof work.cover === 'string'
+              ? <img src={work.cover} alt={`${work.title}, framed original painting by Jason Deters`} loading={index === 0 ? 'eager' : 'lazy'} />
+              : <Image src={work.cover} widths={[640,1200]} sizes="(max-width: 700px) 100vw, 50vw" width={1200} format="webp" quality={86} alt={`${work.title}, framed original painting by Jason Deters`} loading={index === 0 ? 'eager' : 'lazy'} />}
+            <span class="texture-peek" aria-hidden="true">
+              {typeof work.cover === 'string'
+                ? <img src={work.cover} alt="" loading="lazy" />
+                : <Image src={work.cover} width={500} format="webp" quality={86} alt="" loading="lazy" />}
+              <span>Surface detail</span>
+            </span>
             <span class="view">View the work ↗</span>
           </a>
           <div class="card-heading"><h2><a href={`/works/${work.slug}/`}>{work.title}</a></h2><p class="price">{priceLabel(work.price)}</p></div>
@@ -45,9 +55,13 @@ const shareImage = await getImage({src:artworks[0].cover,width:1200,format:'webp
   .gallery-caption { display:flex; justify-content:space-between; gap:20px; border-top:1px solid #cdc6b9; padding:20px 0 28px; font-size:11px; color:#6d665a; }
   .wall { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:60px 44px; }
   .picture { position:relative; display:flex; align-items:center; justify-content:center; background:#e9e4d9; aspect-ratio:4/5; max-height:580px; padding:22px; overflow:hidden; }
-  .picture img { width:100%; height:100%; object-fit:contain; transition:transform .3s ease; }
-  .picture:hover img { transform:scale(1.015); }
-  .view { position:absolute; bottom:15px; right:15px; background:#faf9f6; padding:10px 13px; font-size:11px; }
+  .picture > img { width:100%; height:100%; object-fit:contain; transition:transform .3s ease; }
+  .picture:hover > img { transform:scale(1.015); }
+  .texture-peek { position:absolute; right:22px; bottom:22px; width:43%; height:43%; padding:7px; background:#f7f4ed; box-shadow:0 8px 28px #211a1438; opacity:0; transform:translateY(10px) scale(.96); transition:opacity .28s ease,transform .28s ease; pointer-events:none; }
+  .texture-peek img { width:100%; height:100%; display:block; object-fit:cover; object-position:50% 78%; transform:scale(2.2); }
+  .texture-peek > span { position:absolute; bottom:7px; left:7px; padding:5px 7px; background:#f7f4ed; color:#514a40; font:10px Arial,sans-serif; letter-spacing:.06em; }
+  .picture:hover .texture-peek,.picture:focus-visible .texture-peek { opacity:1; transform:translateY(0) scale(1); }
+  .view { position:absolute; bottom:15px; left:15px; background:#faf9f6; padding:10px 13px; font-size:11px; }
   a { color:inherit; text-decoration:none; }
   .card-heading { display:flex; gap:12px; justify-content:space-between; align-items:baseline; margin-top:23px; }
   h2 { font-weight:400; font-size:clamp(23px,2.5vw,32px); margin:0; }
@@ -60,6 +74,6 @@ const shareImage = await getImage({src:artworks[0].cover,width:1200,format:'webp
   .note p { max-width:640px; color:#5c584e; line-height:1.7; font-size:17px; }
   .note a { display:inline-block; margin-top:12px; border-bottom:1px solid; padding-bottom:4px; }
   :focus-visible { outline:2px solid #755735; outline-offset:5px; }
-  @media(max-width:700px) { .wall { grid-template-columns:1fr; gap:45px; } .gallery-caption { font-size:10px; } .picture { padding:16px; } .note { margin-top:50px; } }
-  @media(prefers-reduced-motion:reduce) { .picture img { transition:none; } }
+  @media(max-width:700px) { .wall { grid-template-columns:1fr; gap:45px; } .gallery-caption { font-size:10px; } .picture { padding:16px; } .texture-peek { right:16px; bottom:16px; width:36%; height:34%; opacity:1; transform:none; } .note { margin-top:50px; } }
+  @media(prefers-reduced-motion:reduce) { .picture img,.texture-peek { transition:none; } }
 </style>
