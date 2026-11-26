@@ -6,20 +6,20 @@ export function getStaticPaths() {
   return artworks.map(work => ({ params: { slug: work.slug }, props: { work } }));
 }
 const { work } = Astro.props as { work: Artwork };
-const cover = await getImage({src:work.cover,width:2000,format:'webp',quality:86});
-const shareImage = await getImage({src:work.cover,width:1200,format:'webp',quality:86});
-const images = [
-  { src: cover.src, original: work.original, label: 'Framed view' },
-  { src: work.slug === 'terra' ? '/images/pieces/terra-final.jpg' : '/images/pieces/tectonic-restraint.jpg', original: work.slug === 'terra' ? '/images/pieces/terra-final.jpg' : '/images/pieces/tectonic-restraint.jpg', label: 'Additional view' },
-];
+const cover = typeof work.cover === 'string' ? work.cover : (await getImage({src:work.cover,width:2000,format:'webp',quality:86})).src;
+const shareImage = typeof work.cover === 'string' ? work.cover : (await getImage({src:work.cover,width:1200,format:'webp',quality:86})).src;
+const images = work.slug === 'ochre-vespers-study'
+  ? [{ src: cover, original: work.original, label: 'Framed view' }, { src: cover, original: work.original, label: 'Surface detail' }]
+  : [{ src: cover, original: work.original, label: 'Framed view' }, { src: work.slug === 'terra' ? '/images/pieces/terra-final.jpg' : '/images/pieces/tectonic-restraint.jpg', original: work.slug === 'terra' ? '/images/pieces/terra-final.jpg' : '/images/pieces/tectonic-restraint.jpg', label: 'Additional view' }];
 ---
-<BaseLayout title={`${work.title} — Axiom Atelier`} description={`${work.title} by Jason Deters. ${work.height} × ${work.width} inches. ${priceLabel(work.price)} USD. View the original painting and arrange purchase directly with the artist.`} image={shareImage.src}>
+<BaseLayout title={`${work.title} — Axiom Atelier`} description={`${work.title} by Jason Deters. ${work.height} × ${work.width} inches. ${priceLabel(work.price)} USD. View the original painting and arrange purchase directly with the artist.`} image={shareImage}>
   <div class="work-page">
     <a class="back" href="/available-works/">← Available Works</a>
     <div class="work-layout">
       <section class="photographs" aria-label={`${work.title} photographs`}>
         <a id="image-link" href={work.original} target="_blank" rel="noopener" aria-label={`Enlarge ${work.title}`}>
-          <img id="main-image" src={images[0].src} alt={`${work.title}, framed original painting by Jason Deters`} width={work.slug === 'terra' ? 1352 : 1557} height="2000" />
+          <img id="main-image" src={images[0].src} alt={`${work.title}, framed original painting by Jason Deters`} width="1554" height="1179" />
+          {work.slug === 'ochre-vespers-study' && <span class="texture-peek" aria-hidden="true"><img src={cover} alt="" /><span>Surface detail</span></span>}
           <span class="enlarge-label">Enlarge image ↗</span>
         </a>
         <div class="image-options" aria-label="Choose a view">
@@ -83,8 +83,12 @@ const images = [
   .back,.eyebrow,.price,.availability,dt,dd,.primary,.delivery,.trade,.small,label,.image-options,.enlarge-label,.dialog-toolbar { font-family:Arial,sans-serif; }
   .back { display:inline-block; font-size:12px; margin-bottom:35px; }
   .work-layout { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:clamp(30px,5vw,75px); align-items:start; }
-  #image-link { position:relative; display:block; background:#e9e4d9; padding:20px; }
+  #image-link { position:relative; display:block; background:#e9e4d9; padding:20px; overflow:hidden; }
   #main-image { display:block; width:100%; height:auto; max-height:80vh; object-fit:contain; }
+  #image-link:hover .texture-peek { opacity:1; transform:translateY(0) scale(1); }
+  .texture-peek { position:absolute; right:20px; bottom:20px; width:38%; height:34%; padding:7px; background:#f7f4ed; box-shadow:0 8px 28px #211a1438; opacity:0; transform:translateY(10px) scale(.96); transition:opacity .28s ease,transform .28s ease; pointer-events:none; }
+  .texture-peek img { width:100%; height:100%; display:block; object-fit:cover; object-position:50% 78%; transform:scale(2.1); }
+  .texture-peek > span { position:absolute; bottom:7px; left:7px; padding:5px 7px; background:#f7f4ed; color:#514a40; font:10px Arial,sans-serif; letter-spacing:.06em; }
   .enlarge-label { position:absolute; bottom:12px; right:12px; padding:10px; background:#faf9f6; font-size:11px; }
   .image-options { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
   .image-options button { font:inherit; font-size:12px; background:transparent; border:1px solid #b9b2a4; color:inherit; padding:12px; cursor:pointer; }
